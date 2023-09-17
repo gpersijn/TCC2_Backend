@@ -12,6 +12,7 @@ net/javaguides/springboot/domain/entity/Tecnico.class
 net/javaguides/springboot/config/TestConfig.class
 net/javaguides/springboot/usecase/DBService.class
 net/javaguides/springboot/config/security/UserSS.class
+net/javaguides/springboot/domain/dtos/PerfilDTO.class
 net/javaguides/springboot/config/security/JWTAuthorizationFilter.class
 net/javaguides/springboot/domain/repository/FuncionarioRepository.class
 net/javaguides/springboot/domain/dtos/TecnicoDTO.class
