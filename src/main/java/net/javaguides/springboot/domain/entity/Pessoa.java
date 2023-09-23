@@ -39,6 +39,8 @@ public abstract class Pessoa implements Serializable {
 
     protected String senha;
 
+    protected String setor;
+
     protected String telefone;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
@@ -59,13 +61,14 @@ public abstract class Pessoa implements Serializable {
         addPerfil(PerfilEnum.FUNCIONARIO);
     }
 
-    public Pessoa(Integer id, String primeiroNome, String ultimoNome, String email, String senha, String telefone, LocalDate dataAniversario, SexoEnum sexoEnum, String cpf) {
+    public Pessoa(Integer id, String primeiroNome, String ultimoNome, String email, String senha, String setor, String telefone, LocalDate dataAniversario, SexoEnum sexoEnum, String cpf) {
         super();
         this.id = id;
         this.primeiroNome = primeiroNome;
         this.ultimoNome = ultimoNome;
         this.email = email;
         this.senha = senha;
+        this.setor = setor;
         this.telefone = telefone;
         this.dataAniversario = dataAniversario;
         this.sexoEnum = sexoEnum;

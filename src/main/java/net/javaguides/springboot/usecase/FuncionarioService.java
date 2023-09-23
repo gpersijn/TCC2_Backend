@@ -49,10 +49,11 @@ public class FuncionarioService {
         return funcionarioRepository.save(newFuncionario);
     }
 
-    public Funcionario update(Integer id, @Valid FuncionarioDTO dto) {
+    public Funcionario update(Integer id, FuncionarioDTO dto) {
         dto.setId(id);
         Funcionario oldFuncionario = findById(id);
         validaCpfEmail(dto);
+
         oldFuncionario = new Funcionario(dto);
 
         return funcionarioRepository.save(oldFuncionario);
