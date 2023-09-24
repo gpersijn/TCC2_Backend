@@ -75,7 +75,7 @@ public class TecnicoDTO implements Serializable {
 
     public TecnicoDTO(){
         super();
-        addPerfil(PerfilEnum.FUNCIONARIO);
+        addPerfil(PerfilEnum.TECNICO);
     }
 
     public Set<PerfilEnum> getPerfis(){

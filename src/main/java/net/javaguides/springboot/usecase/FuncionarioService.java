@@ -44,6 +44,7 @@ public class FuncionarioService {
     public Funcionario create(FuncionarioDTO dto) {
         dto.setId(null);
         dto.setIsApproved(Boolean.FALSE);
+        dto.addPerfil(PerfilEnum.FUNCIONARIO);
         dto.setSenha(encoder.encode(dto.getSenha()));
         validaCpfEmail(dto);
         Funcionario newFuncionario = new Funcionario(dto);

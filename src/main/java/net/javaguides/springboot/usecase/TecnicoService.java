@@ -43,6 +43,7 @@ public class TecnicoService{
         dto.setId(null);
         dto.setIsApproved(Boolean.FALSE);
         dto.setSenha(encoder.encode(dto.getSenha()));
+        dto.addPerfil(PerfilEnum.TECNICO);
         validaCpfEmail(dto);
         Tecnico newTecnico = new Tecnico(dto);
         return tecnicoRepository.save(newTecnico);
