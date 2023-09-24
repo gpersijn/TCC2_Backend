@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class TecnicoService{
@@ -50,19 +51,45 @@ public class TecnicoService{
     public Tecnico update(Integer id, TecnicoDTO dto) {
         dto.setId(id);
         Tecnico oldTecnico = findById(id);
+
         validaCpfEmail(dto);
 
-        oldTecnico = new Tecnico(dto);
+        Tecnico newTecnico = atualizarValores(dto, oldTecnico);
 
-        return tecnicoRepository.save(oldTecnico);
+        return tecnicoRepository.save(newTecnico);
+    }
 
+    private static Tecnico atualizarValores(TecnicoDTO dto, Tecnico oldTecnico) {
+        if (dto.getPrimeiroNome() != null) {
+            oldTecnico.setPrimeiroNome(dto.getPrimeiroNome());
+        }
+        if (dto.getUltimoNome() != null) {
+            oldTecnico.setUltimoNome(dto.getUltimoNome());
+        }
+        if (dto.getEmail() != null) {
+            oldTecnico.setEmail(dto.getEmail());
+        }
+        if (dto.getSetor() != null) {
+            oldTecnico.setSetor(dto.getSetor());
+        }
+        if (dto.getTelefone() != null) {
+            oldTecnico.setTelefone(dto.getTelefone());
+        }
+        if (dto.getDataAniversario() != null) {
+            oldTecnico.setDataAniversario(dto.getDataAniversario());
+        }
+        if (dto.getSexoEnum() != null) {
+            oldTecnico.setSexoEnum(dto.getSexoEnum());
+        }
+        if (dto.getCpf() != null) {
+            oldTecnico.setCpf(dto.getCpf());
+        }
+        return oldTecnico;
     }
 
     public void delete(Integer id) {
         Tecnico tecnico = findById(id);
-        if(!tecnico.getChamados().isEmpty()){
-            throw new DataIntegrityViolationException("Tecnico possui ordens de serviço e não pode ser deletado!");
-        }
+
         tecnicoRepository.deleteById(id);
     }
 

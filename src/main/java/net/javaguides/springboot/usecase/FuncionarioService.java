@@ -1,6 +1,7 @@
 package net.javaguides.springboot.usecase;
 
 import net.javaguides.springboot.domain.dtos.FuncionarioDTO;
+import net.javaguides.springboot.domain.dtos.TecnicoDTO;
 import net.javaguides.springboot.domain.entity.Funcionario;
 import net.javaguides.springboot.domain.entity.Pessoa;
 import net.javaguides.springboot.domain.entity.Tecnico;
@@ -54,17 +55,15 @@ public class FuncionarioService {
         Funcionario oldFuncionario = findById(id);
         validaCpfEmail(dto);
 
-        oldFuncionario = new Funcionario(dto);
+        Funcionario newFuncionario = atualizarValores(dto, oldFuncionario);
 
-        return funcionarioRepository.save(oldFuncionario);
+        return funcionarioRepository.save(newFuncionario);
 
     }
 
     public void delete(Integer id) {
         Funcionario funcionario = findById(id);
-        if(!funcionario.getChamados().isEmpty()){
-            throw new DataIntegrityViolationException("Funcionario possui ordens de serviço e não pode ser deletado!");
-        }
+
         funcionarioRepository.deleteById(id);
     }
 
@@ -111,5 +110,33 @@ public class FuncionarioService {
             funcionario.get().setIsApproved(Boolean.TRUE);
         }
         return funcionarioRepository.save(funcionario.get());
+    }
+
+    private static Funcionario atualizarValores(FuncionarioDTO dto, Funcionario oldFuncionario) {
+        if (dto.getPrimeiroNome() != null) {
+            oldFuncionario.setPrimeiroNome(dto.getPrimeiroNome());
+        }
+        if (dto.getUltimoNome() != null) {
+            oldFuncionario.setUltimoNome(dto.getUltimoNome());
+        }
+        if (dto.getEmail() != null) {
+            oldFuncionario.setEmail(dto.getEmail());
+        }
+        if (dto.getSetor() != null) {
+            oldFuncionario.setSetor(dto.getSetor());
+        }
+        if (dto.getTelefone() != null) {
+            oldFuncionario.setTelefone(dto.getTelefone());
+        }
+        if (dto.getDataAniversario() != null) {
+            oldFuncionario.setDataAniversario(dto.getDataAniversario());
+        }
+        if (dto.getSexoEnum() != null) {
+            oldFuncionario.setSexoEnum(dto.getSexoEnum());
+        }
+        if (dto.getCpf() != null) {
+            oldFuncionario.setCpf(dto.getCpf());
+        }
+        return oldFuncionario;
     }
 }

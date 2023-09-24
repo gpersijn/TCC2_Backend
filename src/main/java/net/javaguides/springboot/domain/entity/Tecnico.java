@@ -39,7 +39,7 @@ public class Tecnico extends Pessoa {
         this.dataAniversario = tecnico.getDataAniversario();
         this.sexoEnum = tecnico.getSexoEnum();
         this.cpf = tecnico.getCpf();
-        this.perfis = tecnico.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
+        if(!tecnico.getPerfis().isEmpty()) this.perfis = tecnico.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
         this.isApproved = tecnico.getIsApproved();
     }
 }

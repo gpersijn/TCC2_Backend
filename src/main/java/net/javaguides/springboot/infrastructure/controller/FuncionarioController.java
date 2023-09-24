@@ -5,6 +5,7 @@ import net.javaguides.springboot.domain.dtos.PerfilDTO;
 import net.javaguides.springboot.domain.dtos.TecnicoDTO;
 import net.javaguides.springboot.domain.entity.Funcionario;
 import net.javaguides.springboot.domain.entity.Tecnico;
+import net.javaguides.springboot.domain.enums.PerfilEnum;
 import net.javaguides.springboot.usecase.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

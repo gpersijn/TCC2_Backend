@@ -39,7 +39,7 @@ public class Funcionario extends Pessoa {
         this.dataAniversario = funcionario.getDataAniversario();
         this.sexoEnum = funcionario.getSexoEnum();
         this.cpf = funcionario.getCpf();
-        this.perfis = funcionario.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
+        if(!funcionario.getPerfis().isEmpty()) this.perfis = funcionario.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
         this.isApproved = funcionario.getIsApproved();
     }
 }
