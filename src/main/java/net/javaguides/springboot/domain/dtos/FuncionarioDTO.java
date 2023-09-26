@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
-@Builder
 public class FuncionarioDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -62,6 +61,7 @@ public class FuncionarioDTO implements Serializable {
     public FuncionarioDTO(Funcionario funcionario){
         super();
         this.id = funcionario.getId();
+        this.isApproved = funcionario.getIsApproved();
         this.primeiroNome = funcionario.getPrimeiroNome();
         this.ultimoNome = funcionario.getUltimoNome();
         this.email = funcionario.getEmail();
@@ -72,7 +72,6 @@ public class FuncionarioDTO implements Serializable {
         this.sexoEnum = funcionario.getSexoEnum();
         this.cpf = funcionario.getCpf();
         this.perfis = funcionario.getPerfis().stream().map(x -> x.getCodigo()).collect(Collectors.toSet());
-        this.isApproved = funcionario.getIsApproved();
     }
 
     public FuncionarioDTO(){

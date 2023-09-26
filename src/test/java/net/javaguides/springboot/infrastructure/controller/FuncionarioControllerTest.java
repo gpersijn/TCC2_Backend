@@ -1,6 +1,5 @@
 package net.javaguides.springboot.infrastructure.controller;
 
-import net.javaguides.springboot.Mock.FuncionarioMock;
 import net.javaguides.springboot.domain.dtos.FuncionarioDTO;
 import net.javaguides.springboot.domain.dtos.PerfilDTO;
 import net.javaguides.springboot.domain.entity.Funcionario;
@@ -10,15 +9,16 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.test.web.servlet.MockMvc;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
+
 
 public class FuncionarioControllerTest {
 
@@ -61,23 +61,6 @@ public class FuncionarioControllerTest {
         verify(funcionarioService, times(1)).findAll();
         assert response.getStatusCode() == HttpStatus.OK;
     }
-
-//    @Test
-//    public void testCreate() {
-//        // Arrange
-//        FuncionarioDTO funcionarioDTO = FuncionarioMock.valorPadraoDto();
-//        Funcionario novoFuncionario = new Funcionario(); // Preencha com os dados do novo funcionário
-//        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(novoFuncionario.getId()).toUri();
-//        when(funcionarioService.create(funcionarioDTO)).thenReturn(novoFuncionario);
-//
-//        // Act
-//        ResponseEntity<FuncionarioDTO> response = funcionarioController.create(funcionarioDTO);
-//
-//        // Assert
-//        verify(funcionarioService, times(1)).create(funcionarioDTO);
-//        assert response.getStatusCode() == HttpStatus.CREATED;
-//        assert response.getHeaders().getLocation().equals(uri);
-//    }
 
     @Test
     public void testUpdate() {

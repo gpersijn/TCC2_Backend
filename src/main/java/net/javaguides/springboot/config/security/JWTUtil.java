@@ -47,7 +47,7 @@ public class JWTUtil {
         claims.put("setor", pessoa.getSetor());
 
         return Jwts.builder()
-                .setClaims(claims) // Adicione todas as reivindicações personalizadas
+                .setClaims(claims)
                 .setExpiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(SignatureAlgorithm.HS512, secret.getBytes())
                 .compact();
