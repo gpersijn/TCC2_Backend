@@ -1,6 +1,7 @@
 package net.javaguides.springboot.domain.entity;
 
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import net.javaguides.springboot.domain.dtos.FuncionarioDTO;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 @Entity
+@Builder
 public class Funcionario extends Pessoa {
     private static final long serialVersionUID = 1L;
 

@@ -1,6 +1,7 @@
 package net.javaguides.springboot.domain.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import net.javaguides.springboot.domain.entity.Funcionario;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
+@Builder
 public class FuncionarioDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 

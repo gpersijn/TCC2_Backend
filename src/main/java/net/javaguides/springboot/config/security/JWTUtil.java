@@ -44,6 +44,7 @@ public class JWTUtil {
         claims.put("cpf", pessoa.getCpf());
         claims.put("isApproved", pessoa.getIsApproved());
         claims.put("perfis", pessoa.getPerfis());
+        claims.put("setor", pessoa.getSetor());
 
         return Jwts.builder()
                 .setClaims(claims) // Adicione todas as reivindicações personalizadas
