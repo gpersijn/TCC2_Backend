@@ -1,10 +1,8 @@
 package net.javaguides.springboot.usecase;
 
 import net.javaguides.springboot.domain.dtos.FuncionarioDTO;
-import net.javaguides.springboot.domain.dtos.TecnicoDTO;
 import net.javaguides.springboot.domain.entity.Funcionario;
 import net.javaguides.springboot.domain.entity.Pessoa;
-import net.javaguides.springboot.domain.entity.Tecnico;
 import net.javaguides.springboot.domain.enums.PerfilEnum;
 import net.javaguides.springboot.domain.repository.FuncionarioRepository;
 import net.javaguides.springboot.domain.repository.PessoaRepository;
@@ -15,7 +13,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -59,7 +56,6 @@ public class FuncionarioService {
         Funcionario newFuncionario = atualizarValores(dto, oldFuncionario);
 
         return funcionarioRepository.save(newFuncionario);
-
     }
 
     public void delete(Integer id) {

@@ -1,17 +1,10 @@
 package net.javaguides.springboot.usecase;
 
-import net.javaguides.springboot.domain.entity.Funcionario;
-import net.javaguides.springboot.domain.entity.Tecnico;
-import net.javaguides.springboot.domain.enums.PerfilEnum;
-import net.javaguides.springboot.domain.enums.SexoEnum;
 import net.javaguides.springboot.domain.repository.FuncionarioRepository;
 import net.javaguides.springboot.domain.repository.TecnicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
-import java.util.Arrays;
 
 @Service
 public class DBService {
