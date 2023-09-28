@@ -109,7 +109,7 @@ public class FuncionarioService {
         return funcionarioRepository.save(funcionario.get());
     }
 
-    private static Funcionario atualizarValores(FuncionarioDTO dto, Funcionario oldFuncionario) {
+    public static Funcionario atualizarValores(FuncionarioDTO dto, Funcionario oldFuncionario) {
         if (dto.getPrimeiroNome() != null) {
             oldFuncionario.setPrimeiroNome(dto.getPrimeiroNome());
         }

@@ -59,7 +59,7 @@ public class TecnicoService{
         return tecnicoRepository.save(newTecnico);
     }
 
-    private static Tecnico atualizarValores(TecnicoDTO dto, Tecnico oldTecnico) {
+    protected static Tecnico atualizarValores(TecnicoDTO dto, Tecnico oldTecnico) {
         if (dto.getPrimeiroNome() != null) {
             oldTecnico.setPrimeiroNome(dto.getPrimeiroNome());
         }

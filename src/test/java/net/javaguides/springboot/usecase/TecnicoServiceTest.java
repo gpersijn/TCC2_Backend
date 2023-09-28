@@ -1,21 +1,27 @@
 package net.javaguides.springboot.usecase;
 
+import net.javaguides.springboot.domain.dtos.TecnicoDTO;
 import net.javaguides.springboot.domain.entity.Tecnico;
 import net.javaguides.springboot.domain.enums.PerfilEnum;
+import net.javaguides.springboot.domain.enums.SexoEnum;
 import net.javaguides.springboot.domain.repository.TecnicoRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.dao.DataIntegrityViolationException;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class TecnicoServiceTest {
@@ -25,6 +31,14 @@ public class TecnicoServiceTest {
 
     @Mock
     private TecnicoRepository tecnicoRepository;
+
+    @Mock
+    private TecnicoDTO mockDTO;
+
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Test
     public void testFindById() {
@@ -102,5 +116,56 @@ public class TecnicoServiceTest {
 
         assertNotNull(result);
         assertTrue(result.getIsApproved());
+    }
+
+    @Test
+    public void testAtualizarValoresTodosCamposPreenchidos() {
+        TecnicoDTO dto = new TecnicoDTO();
+        dto.setPrimeiroNome("NovoPrimeiroNome");
+        dto.setUltimoNome("NovoUltimoNome");
+        dto.setEmail("novoemail@example.com");
+        dto.setSetor("NovoSetor");
+        dto.setTelefone("NovoTelefone");
+        dto.setDataAniversario(LocalDate.of(1990, 1, 1));
+        dto.setSexoEnum(SexoEnum.MASCULINO);
+        dto.setCpf("12345678901");
+
+        Tecnico oldTecnico = new Tecnico();
+        TecnicoService.atualizarValores(dto, oldTecnico);
+
+        assertEquals("NovoPrimeiroNome", oldTecnico.getPrimeiroNome());
+        assertEquals("NovoUltimoNome", oldTecnico.getUltimoNome());
+        assertEquals("novoemail@example.com", oldTecnico.getEmail());
+        assertEquals("NovoSetor", oldTecnico.getSetor());
+        assertEquals("NovoTelefone", oldTecnico.getTelefone());
+        assertEquals(LocalDate.of(1990, 1, 1), oldTecnico.getDataAniversario());
+        assertEquals(SexoEnum.MASCULINO, oldTecnico.getSexoEnum());
+        assertEquals("12345678901", oldTecnico.getCpf());
+    }
+
+    @Test
+    public void testAtualizarValoresNenhumCampoPreenchido() {
+        TecnicoDTO dto = new TecnicoDTO();
+
+        Tecnico oldTecnico = new Tecnico();
+        oldTecnico.setPrimeiroNome("AntigoPrimeiroNome");
+        oldTecnico.setUltimoNome("AntigoUltimoNome");
+        oldTecnico.setEmail("antigoemail@example.com");
+        oldTecnico.setSetor("AntigoSetor");
+        oldTecnico.setTelefone("AntigoTelefone");
+        oldTecnico.setDataAniversario(LocalDate.of(1980, 1, 1));
+        oldTecnico.setSexoEnum(SexoEnum.FEMININO);
+        oldTecnico.setCpf("98765432109");
+
+        TecnicoService.atualizarValores(dto, oldTecnico);
+
+        assertEquals("AntigoPrimeiroNome", oldTecnico.getPrimeiroNome());
+        assertEquals("AntigoUltimoNome", oldTecnico.getUltimoNome());
+        assertEquals("antigoemail@example.com", oldTecnico.getEmail());
+        assertEquals("AntigoSetor", oldTecnico.getSetor());
+        assertEquals("AntigoTelefone", oldTecnico.getTelefone());
+        assertEquals(LocalDate.of(1980, 1, 1), oldTecnico.getDataAniversario());
+        assertEquals(SexoEnum.FEMININO, oldTecnico.getSexoEnum());
+        assertEquals("98765432109", oldTecnico.getCpf());
     }
 }

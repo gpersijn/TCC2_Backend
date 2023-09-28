@@ -1,7 +1,9 @@
 package net.javaguides.springboot.usecase;
 
+import net.javaguides.springboot.domain.dtos.FuncionarioDTO;
 import net.javaguides.springboot.domain.entity.Funcionario;
 import net.javaguides.springboot.domain.enums.PerfilEnum;
+import net.javaguides.springboot.domain.enums.SexoEnum;
 import net.javaguides.springboot.domain.repository.FuncionarioRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,6 +13,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.dao.DataIntegrityViolationException;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,6 +28,7 @@ public class FuncionarioServiceTest {
 
     @Mock
     private FuncionarioRepository funcionarioRepository;
+
 
     @Test
     public void testFindById() {
@@ -102,5 +106,57 @@ public class FuncionarioServiceTest {
 
         assertNotNull(result);
         assertTrue(result.getIsApproved());
+    }
+
+    @Test
+    public void testAtualizarValoresTodosCamposPreenchidos() {
+        // Crie um mock de FuncionarioDTO com valores reais preenchidos em todos os campos
+        FuncionarioDTO dto = new FuncionarioDTO();
+        dto.setPrimeiroNome("NovoPrimeiroNome");
+        dto.setUltimoNome("NovoUltimoNome");
+        dto.setEmail("novoemail@example.com");
+        dto.setSetor("NovoSetor");
+        dto.setTelefone("NovoTelefone");
+        dto.setDataAniversario(LocalDate.of(1990, 1, 1));
+        dto.setSexoEnum(SexoEnum.MASCULINO);
+        dto.setCpf("12345678901");
+
+        Funcionario oldFuncionario = new Funcionario();
+        FuncionarioService.atualizarValores(dto, oldFuncionario);
+
+        assertEquals("NovoPrimeiroNome", oldFuncionario.getPrimeiroNome());
+        assertEquals("NovoUltimoNome", oldFuncionario.getUltimoNome());
+        assertEquals("novoemail@example.com", oldFuncionario.getEmail());
+        assertEquals("NovoSetor", oldFuncionario.getSetor());
+        assertEquals("NovoTelefone", oldFuncionario.getTelefone());
+        assertEquals(LocalDate.of(1990, 1, 1), oldFuncionario.getDataAniversario());
+        assertEquals(SexoEnum.MASCULINO, oldFuncionario.getSexoEnum());
+        assertEquals("12345678901", oldFuncionario.getCpf());
+    }
+
+    @Test
+    public void testAtualizarValoresNenhumCampoPreenchido() {
+        FuncionarioDTO dto = new FuncionarioDTO();
+
+        Funcionario oldFuncionario = new Funcionario();
+        oldFuncionario.setPrimeiroNome("AntigoPrimeiroNome");
+        oldFuncionario.setUltimoNome("AntigoUltimoNome");
+        oldFuncionario.setEmail("antigoemail@example.com");
+        oldFuncionario.setSetor("AntigoSetor");
+        oldFuncionario.setTelefone("AntigoTelefone");
+        oldFuncionario.setDataAniversario(LocalDate.of(1980, 1, 1));
+        oldFuncionario.setSexoEnum(SexoEnum.FEMININO);
+        oldFuncionario.setCpf("98765432109");
+
+        FuncionarioService.atualizarValores(dto, oldFuncionario);
+
+        assertEquals("AntigoPrimeiroNome", oldFuncionario.getPrimeiroNome());
+        assertEquals("AntigoUltimoNome", oldFuncionario.getUltimoNome());
+        assertEquals("antigoemail@example.com", oldFuncionario.getEmail());
+        assertEquals("AntigoSetor", oldFuncionario.getSetor());
+        assertEquals("AntigoTelefone", oldFuncionario.getTelefone());
+        assertEquals(LocalDate.of(1980, 1, 1), oldFuncionario.getDataAniversario());
+        assertEquals(SexoEnum.FEMININO, oldFuncionario.getSexoEnum());
+        assertEquals("98765432109", oldFuncionario.getCpf());
     }
 }
