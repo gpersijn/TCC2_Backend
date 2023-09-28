@@ -64,7 +64,7 @@ public class FuncionarioService {
         funcionarioRepository.deleteById(id);
     }
 
-    private void validaCpfEmail(FuncionarioDTO dto) {
+    public void validaCpfEmail(FuncionarioDTO dto) {
         Optional<Pessoa> pessoa = pessoaRepository.findByCpf(dto.getCpf());
         if(pessoa.isPresent() && !Objects.equals(pessoa.get().getId(), dto.getId())){
             throw new DataViolationException("Cpf já cadastrado no sistema!");

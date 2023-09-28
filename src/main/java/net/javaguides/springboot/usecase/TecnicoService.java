@@ -93,7 +93,7 @@ public class TecnicoService{
         tecnicoRepository.deleteById(id);
     }
 
-    private void validaCpfEmail(TecnicoDTO dto) {
+    public void validaCpfEmail(TecnicoDTO dto) {
         Optional<Pessoa> pessoa = pessoaRepository.findByCpf(dto.getCpf());
         if(pessoa.isPresent() && pessoa.get().getId() != dto.getId()){
             throw new DataViolationException("Cpf já cadastrado no sistema!");

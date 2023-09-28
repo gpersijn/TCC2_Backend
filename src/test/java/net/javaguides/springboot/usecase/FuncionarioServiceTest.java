@@ -2,9 +2,12 @@ package net.javaguides.springboot.usecase;
 
 import net.javaguides.springboot.domain.dtos.FuncionarioDTO;
 import net.javaguides.springboot.domain.entity.Funcionario;
+import net.javaguides.springboot.domain.entity.Pessoa;
 import net.javaguides.springboot.domain.enums.PerfilEnum;
 import net.javaguides.springboot.domain.enums.SexoEnum;
 import net.javaguides.springboot.domain.repository.FuncionarioRepository;
+import net.javaguides.springboot.domain.repository.PessoaRepository;
+import net.javaguides.springboot.usecase.exceptions.DataViolationException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -28,6 +31,9 @@ public class FuncionarioServiceTest {
 
     @Mock
     private FuncionarioRepository funcionarioRepository;
+
+    @Mock
+    private PessoaRepository pessoaRepository;
 
 
     @Test
@@ -159,4 +165,29 @@ public class FuncionarioServiceTest {
         assertEquals(SexoEnum.FEMININO, oldFuncionario.getSexoEnum());
         assertEquals("98765432109", oldFuncionario.getCpf());
     }
+
+    @Test
+    public void testValidaCpfEmailEmailAlreadyExists() {
+        FuncionarioDTO dto = new FuncionarioDTO();
+        dto.setId(1); // Set the ID to a value that would not match any existing Pessoa
+
+        when(pessoaRepository.findByEmail(dto.getEmail())).thenReturn(Optional.of(new Funcionario()));
+
+        assertThrows(DataViolationException.class, () -> {
+            funcionarioService.validaCpfEmail(dto);
+        });
+    }
+
+    @Test
+    public void testValidaCpfEmailCpfAlreadyExists() {
+        FuncionarioDTO dto = new FuncionarioDTO();
+        dto.setId(1);
+
+        when(pessoaRepository.findByCpf(dto.getCpf())).thenReturn(Optional.of(new Funcionario()));
+
+        assertThrows(DataViolationException.class, () -> {
+            funcionarioService.validaCpfEmail(dto);
+        });
+    }
+
 }

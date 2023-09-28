@@ -1,10 +1,13 @@
 package net.javaguides.springboot.usecase;
 
+import net.javaguides.springboot.domain.dtos.FuncionarioDTO;
 import net.javaguides.springboot.domain.dtos.TecnicoDTO;
 import net.javaguides.springboot.domain.entity.Tecnico;
 import net.javaguides.springboot.domain.enums.PerfilEnum;
 import net.javaguides.springboot.domain.enums.SexoEnum;
+import net.javaguides.springboot.domain.repository.PessoaRepository;
 import net.javaguides.springboot.domain.repository.TecnicoRepository;
+import net.javaguides.springboot.usecase.exceptions.DataViolationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -34,6 +37,9 @@ public class TecnicoServiceTest {
 
     @Mock
     private TecnicoDTO mockDTO;
+
+    @Mock
+    private PessoaRepository pessoaRepository;
 
     @BeforeEach
     void setUp() {
@@ -167,5 +173,29 @@ public class TecnicoServiceTest {
         assertEquals(LocalDate.of(1980, 1, 1), oldTecnico.getDataAniversario());
         assertEquals(SexoEnum.FEMININO, oldTecnico.getSexoEnum());
         assertEquals("98765432109", oldTecnico.getCpf());
+    }
+
+    @Test
+    public void testValidaCpfEmailEmailAlreadyExists() {
+        TecnicoDTO dto = new TecnicoDTO();
+        dto.setId(1);
+
+        when(pessoaRepository.findByEmail(dto.getEmail())).thenReturn(Optional.of(new Tecnico()));
+
+        assertThrows(DataViolationException.class, () -> {
+            tecnicoService.validaCpfEmail(dto);
+        });
+    }
+
+    @Test
+    public void testValidaCpfEmailCpfAlreadyExists() {
+        TecnicoDTO dto = new TecnicoDTO();
+        dto.setId(1);
+
+        when(pessoaRepository.findByCpf(dto.getCpf())).thenReturn(Optional.of(new Tecnico()));
+
+        assertThrows(DataViolationException.class, () -> {
+            tecnicoService.validaCpfEmail(dto);
+        });
     }
 }
