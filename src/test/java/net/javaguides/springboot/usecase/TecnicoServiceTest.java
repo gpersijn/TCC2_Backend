@@ -7,6 +7,7 @@ import net.javaguides.springboot.domain.enums.PerfilEnum;
 import net.javaguides.springboot.domain.enums.SexoEnum;
 import net.javaguides.springboot.domain.repository.PessoaRepository;
 import net.javaguides.springboot.domain.repository.TecnicoRepository;
+import net.javaguides.springboot.mocks.TecnicoDTOMock;
 import net.javaguides.springboot.usecase.exceptions.DataViolationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,10 +18,13 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -40,6 +44,9 @@ public class TecnicoServiceTest {
 
     @Mock
     private PessoaRepository pessoaRepository;
+
+    @Mock
+    private BCryptPasswordEncoder encoder;
 
     @BeforeEach
     void setUp() {
@@ -198,4 +205,30 @@ public class TecnicoServiceTest {
             tecnicoService.validaCpfEmail(dto);
         });
     }
+
+    @Test
+    public void testCreate() {
+        TecnicoDTO dto = TecnicoDTOMock.withDefaultValues();
+        when(encoder.encode(dto.getSenha())).thenReturn("hashedPassword");
+        when(tecnicoRepository.save(any(Tecnico.class))).thenReturn(new Tecnico(dto));
+
+        Tecnico createdTecnico = tecnicoService.create(dto);
+
+        assertNotNull(createdTecnico);
+    }
+
+    @Test
+    public void testUpdate() {
+        Integer id = 1;
+        TecnicoDTO dto = TecnicoDTOMock.withDefaultValues();
+        when(tecnicoRepository.findById(id)).thenReturn(Optional.of(new Tecnico()));
+        when(tecnicoRepository.save(any(Tecnico.class))).thenReturn(new Tecnico(dto));
+
+        Tecnico updatedTecnico = tecnicoService.update(id, dto);
+
+        assertNotNull(updatedTecnico);
+        assertEquals(dto.getId(), updatedTecnico.getId());
+    }
+
 }
+

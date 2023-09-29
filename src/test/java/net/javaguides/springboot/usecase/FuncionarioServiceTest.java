@@ -7,6 +7,7 @@ import net.javaguides.springboot.domain.enums.PerfilEnum;
 import net.javaguides.springboot.domain.enums.SexoEnum;
 import net.javaguides.springboot.domain.repository.FuncionarioRepository;
 import net.javaguides.springboot.domain.repository.PessoaRepository;
+import net.javaguides.springboot.mocks.FuncionarioDTOMock;
 import net.javaguides.springboot.usecase.exceptions.DataViolationException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,12 +16,14 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -34,6 +37,9 @@ public class FuncionarioServiceTest {
 
     @Mock
     private PessoaRepository pessoaRepository;
+
+    @Mock
+    private BCryptPasswordEncoder encoder;
 
 
     @Test
@@ -106,7 +112,7 @@ public class FuncionarioServiceTest {
         funcionario.setIsApproved(false);
 
         when(funcionarioRepository.findById(1)).thenReturn(Optional.of(funcionario));
-        when(funcionarioRepository.save(Mockito.any(Funcionario.class))).thenReturn(funcionario);
+        when(funcionarioRepository.save(any(Funcionario.class))).thenReturn(funcionario);
 
         Funcionario result = funcionarioService.aprovarLogin(1);
 
@@ -188,6 +194,30 @@ public class FuncionarioServiceTest {
         assertThrows(DataViolationException.class, () -> {
             funcionarioService.validaCpfEmail(dto);
         });
+    }
+
+    @Test
+    public void testCreate() {
+        FuncionarioDTO dto = FuncionarioDTOMock.withDefaultValues();
+        when(encoder.encode(dto.getSenha())).thenReturn("hashedPassword");
+        when(funcionarioRepository.save(any(Funcionario.class))).thenReturn(new Funcionario(dto));
+
+        Funcionario createdFuncionario = funcionarioService.create(dto);
+
+        assertNotNull(createdFuncionario);
+    }
+
+    @Test
+    public void testUpdate() {
+        Integer id = 1;
+        FuncionarioDTO dto = FuncionarioDTOMock.withDefaultValues();
+        when(funcionarioRepository.findById(id)).thenReturn(Optional.of(new Funcionario()));
+        when(funcionarioRepository.save(any(Funcionario.class))).thenReturn(new Funcionario(dto));
+
+        Funcionario updatedFuncionario = funcionarioService.update(id, dto);
+
+        assertNotNull(updatedFuncionario);
+        assertEquals(dto.getId(), updatedFuncionario.getId());
     }
 
 }
