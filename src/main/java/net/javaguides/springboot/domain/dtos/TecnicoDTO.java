@@ -8,6 +8,7 @@ import net.javaguides.springboot.domain.enums.PerfilEnum;
 import net.javaguides.springboot.domain.enums.SexoEnum;
 import org.hibernate.validator.constraints.br.CPF;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -35,6 +36,7 @@ public class TecnicoDTO implements Serializable {
 
     @NotNull(message = "O campo EMAIL deve ser preenchido.")
     @NotBlank(message = "O campo EMAIL não pode estar em branco.")
+    @Email
     protected String email;
 
     protected String senha;
