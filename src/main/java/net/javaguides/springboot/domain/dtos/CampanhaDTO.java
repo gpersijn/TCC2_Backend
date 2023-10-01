@@ -40,5 +40,4 @@ public class CampanhaDTO {
         this.dataCampanha = campanha.getDataCampanha();
         this.descricao = campanha.getDescricao();
     }
-
 }
