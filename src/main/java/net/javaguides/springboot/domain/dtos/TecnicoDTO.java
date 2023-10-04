@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 public class TecnicoDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    protected Integer id;
+    protected Integer idTecnico;
 
     protected Boolean isApproved;
 
@@ -61,7 +61,7 @@ public class TecnicoDTO implements Serializable {
 
     public TecnicoDTO(Tecnico tecnico){
         super();
-        this.id = tecnico.getId();
+        this.idTecnico = tecnico.getId();
         this.primeiroNome = tecnico.getPrimeiroNome();
         this.ultimoNome = tecnico.getUltimoNome();
         this.email = tecnico.getEmail();

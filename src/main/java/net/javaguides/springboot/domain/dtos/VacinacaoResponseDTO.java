@@ -12,14 +12,14 @@ import net.javaguides.springboot.domain.enums.StatusVacinacaoEnum;
 @Setter
 @Builder
 public class VacinacaoResponseDTO {
-    protected Integer id;
+    protected Integer idVacinacao;
     protected StatusVacinacaoEnum status;
     protected Pessoa pessoa;
     protected Campanha campanha;
 
-    public VacinacaoResponseDTO(Integer id, StatusVacinacaoEnum status, Pessoa pessoa, Campanha campanha) {
+    public VacinacaoResponseDTO(Integer idVacinacao, StatusVacinacaoEnum status, Pessoa pessoa, Campanha campanha) {
         super();
-        this.id = id;
+        this.idVacinacao = idVacinacao;
         this.status = status;
         this.pessoa = pessoa;
         this.campanha = campanha;
@@ -27,7 +27,7 @@ public class VacinacaoResponseDTO {
 
     public VacinacaoResponseDTO(Vacinacao vacinacao) {
         super();
-        this.id = vacinacao.getId();
+        this.idVacinacao = vacinacao.getId();
         this.status = vacinacao.getStatus();
         this.pessoa = vacinacao.getPessoa();
         this.campanha = vacinacao.getCampanha();

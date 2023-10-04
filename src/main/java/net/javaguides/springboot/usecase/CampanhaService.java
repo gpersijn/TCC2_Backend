@@ -26,14 +26,14 @@ public class CampanhaService {
     }
 
     public Campanha create(CampanhaDTO dto) {
-        dto.setId(null);
+        dto.setIdCampanha(null);
 
         Campanha newCampanha = new Campanha(dto);
         return campanhaRepository.save(newCampanha);
     }
 
     public Campanha update(Integer id, CampanhaDTO dto) {
-        dto.setId(id);
+        dto.setIdCampanha(id);
         Campanha oldCampanha = findById(id);
 
         Campanha newCampanha = atualizarValores(dto, oldCampanha);

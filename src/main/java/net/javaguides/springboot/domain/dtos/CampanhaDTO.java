@@ -8,13 +8,14 @@ import net.javaguides.springboot.domain.entity.Campanha;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class CampanhaDTO {
-    protected Integer id;
+    protected Integer idCampanha;
 
     @NotNull(message = "O campo nome da campanha deve ser preenchido.")
     @NotBlank(message = "O campo nome da campanha não pode estar em branco.")
@@ -34,7 +35,7 @@ public class CampanhaDTO {
 
     public CampanhaDTO(Campanha campanha){
         super();
-        this.id = campanha.getId();
+        this.idCampanha = campanha.getId();
         this.nomeCampanha = campanha.getNomeCampanha();
         this.nomeVacina = campanha.getNomeVacina();
         this.dataCampanha = campanha.getDataCampanha();

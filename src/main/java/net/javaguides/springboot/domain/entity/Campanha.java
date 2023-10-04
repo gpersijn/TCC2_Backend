@@ -35,7 +35,7 @@ public class Campanha implements Serializable {
 
     public Campanha(CampanhaDTO campanha) {
         super();
-        this.id = campanha.getId();
+        this.id = campanha.getIdCampanha();
         this.nomeCampanha = campanha.getNomeCampanha();
         this.nomeVacina = campanha.getNomeVacina();
         this.dataCampanha = campanha.getDataCampanha();

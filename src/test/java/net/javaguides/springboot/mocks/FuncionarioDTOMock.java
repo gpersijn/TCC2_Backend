@@ -1,7 +1,6 @@
 package net.javaguides.springboot.mocks;
 
 import net.javaguides.springboot.domain.dtos.FuncionarioDTO;
-import net.javaguides.springboot.domain.dtos.TecnicoDTO;
 import net.javaguides.springboot.domain.enums.PerfilEnum;
 import net.javaguides.springboot.domain.enums.SexoEnum;
 
@@ -13,7 +12,7 @@ public class FuncionarioDTOMock {
 
     public static FuncionarioDTO withDefaultValues() {
         FuncionarioDTO dto = new FuncionarioDTO();
-        dto.setId(1);
+        dto.setIdFuncionario(1);
         dto.setIsApproved(Boolean.FALSE);
         dto.setSenha("hashedPassword");
         dto.setPrimeiroNome("John");

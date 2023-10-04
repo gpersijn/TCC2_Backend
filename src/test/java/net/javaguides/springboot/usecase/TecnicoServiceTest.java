@@ -1,6 +1,5 @@
 package net.javaguides.springboot.usecase;
 
-import net.javaguides.springboot.domain.dtos.FuncionarioDTO;
 import net.javaguides.springboot.domain.dtos.TecnicoDTO;
 import net.javaguides.springboot.domain.entity.Tecnico;
 import net.javaguides.springboot.domain.enums.PerfilEnum;
@@ -21,10 +20,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -185,7 +182,7 @@ public class TecnicoServiceTest {
     @Test
     public void testValidaCpfEmailEmailAlreadyExists() {
         TecnicoDTO dto = new TecnicoDTO();
-        dto.setId(1);
+        dto.setIdTecnico(1);
 
         when(pessoaRepository.findByEmail(dto.getEmail())).thenReturn(Optional.of(new Tecnico()));
 
@@ -197,7 +194,7 @@ public class TecnicoServiceTest {
     @Test
     public void testValidaCpfEmailCpfAlreadyExists() {
         TecnicoDTO dto = new TecnicoDTO();
-        dto.setId(1);
+        dto.setIdTecnico(1);
 
         when(pessoaRepository.findByCpf(dto.getCpf())).thenReturn(Optional.of(new Tecnico()));
 
@@ -227,7 +224,7 @@ public class TecnicoServiceTest {
         Tecnico updatedTecnico = tecnicoService.update(id, dto);
 
         assertNotNull(updatedTecnico);
-        assertEquals(dto.getId(), updatedTecnico.getId());
+        assertEquals(dto.getIdTecnico(), updatedTecnico.getId());
     }
 
 }

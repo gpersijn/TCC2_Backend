@@ -1,9 +1,7 @@
 package net.javaguides.springboot.infrastructure.controller;
 
-import net.javaguides.springboot.domain.dtos.CampanhaDTO;
 import net.javaguides.springboot.domain.dtos.VacinacaoRequestDTO;
 import net.javaguides.springboot.domain.dtos.VacinacaoResponseDTO;
-import net.javaguides.springboot.domain.entity.Campanha;
 import net.javaguides.springboot.domain.entity.Vacinacao;
 import net.javaguides.springboot.usecase.VacinacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +34,15 @@ public class VacinacaoController {
 
         return ResponseEntity.ok().body(listDto);
     }
+
+    @GetMapping(value = "/pessoa/{idPessoa}")
+    public ResponseEntity<List<VacinacaoResponseDTO>> findAllVacinacoesPorPessoa(@PathVariable Integer idPessoa){
+        List<VacinacaoResponseDTO> list = service.findVacinacoesPorPessoa(idPessoa);
+
+        return ResponseEntity.ok().body(list);
+    }
+
+
 
     @PostMapping
     public ResponseEntity<List<Vacinacao>> create(@Valid @RequestBody VacinacaoRequestDTO dto){

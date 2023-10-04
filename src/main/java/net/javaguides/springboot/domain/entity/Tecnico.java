@@ -29,7 +29,7 @@ public class Tecnico extends Pessoa {
 
     public Tecnico (TecnicoDTO tecnico){
         super();
-        this.id = tecnico.getId();
+        this.id = tecnico.getIdTecnico();
         this.primeiroNome = tecnico.getPrimeiroNome();
         this.ultimoNome = tecnico.getUltimoNome();
         this.email = tecnico.getEmail();

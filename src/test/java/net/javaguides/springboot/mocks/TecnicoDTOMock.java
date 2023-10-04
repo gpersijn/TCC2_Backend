@@ -12,7 +12,7 @@ public class TecnicoDTOMock {
 
     public static TecnicoDTO withDefaultValues() {
         TecnicoDTO dto = new TecnicoDTO();
-        dto.setId(1);
+        dto.setIdTecnico(1);
         dto.setIsApproved(Boolean.FALSE);
         dto.setSenha("hashedPassword");
         dto.setPrimeiroNome("John");

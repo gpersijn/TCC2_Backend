@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 public class FuncionarioDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    protected Integer id;
+    protected Integer idFuncionario;
 
     protected Boolean isApproved;
 
@@ -61,7 +61,7 @@ public class FuncionarioDTO implements Serializable {
 
     public FuncionarioDTO(Funcionario funcionario){
         super();
-        this.id = funcionario.getId();
+        this.idFuncionario = funcionario.getId();
         this.isApproved = funcionario.getIsApproved();
         this.primeiroNome = funcionario.getPrimeiroNome();
         this.ultimoNome = funcionario.getUltimoNome();
