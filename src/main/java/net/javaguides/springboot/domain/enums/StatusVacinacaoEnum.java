@@ -8,6 +8,6 @@ import lombok.Getter;
 public enum StatusVacinacaoEnum {
     PENDENTE,
     CONCLUÍDO,
-    ENCERRADO,
+    ATRASADO,
     CANCELADO
 }

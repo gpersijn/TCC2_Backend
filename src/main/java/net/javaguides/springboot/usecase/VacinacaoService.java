@@ -1,5 +1,6 @@
 package net.javaguides.springboot.usecase;
 
+import net.javaguides.springboot.domain.dtos.VacinacaoAtualizacaoDTO;
 import net.javaguides.springboot.domain.dtos.VacinacaoRequestDTO;
 import net.javaguides.springboot.domain.dtos.VacinacaoResponseDTO;
 import net.javaguides.springboot.domain.entity.Campanha;
@@ -58,17 +59,16 @@ public class VacinacaoService {
         return vacinacaoRepository.saveAll(vacinacoes);
     }
 
-    public Vacinacao update(Integer id, VacinacaoRequestDTO dto) {
-        dto.setId(id);
+    public Vacinacao update(Integer id, VacinacaoAtualizacaoDTO dto) {
         Vacinacao oldVacinacao = findById(id);
         Vacinacao newVacinacao = atualizarValores(dto, oldVacinacao);
 
         return vacinacaoRepository.save(newVacinacao);
     }
 
-    private Vacinacao atualizarValores(VacinacaoRequestDTO dto, Vacinacao oldVacinacao) {
-        if (dto.getStatus() != null) {
-            oldVacinacao.setStatus(dto.getStatus());
+    private Vacinacao atualizarValores(VacinacaoAtualizacaoDTO dto, Vacinacao oldVacinacao) {
+        if (dto.getStatusVacinacao() != null) {
+            oldVacinacao.setStatus(dto.getStatusVacinacao());
         }
         return oldVacinacao;
     }
