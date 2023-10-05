@@ -74,7 +74,7 @@ public class VacinacaoService {
     }
 
     public void delete(Integer id) {
-        campanhaRepository.deleteById(id);
+        vacinacaoRepository.deleteById(id);
     }
 
     public List<VacinacaoResponseDTO> findVacinacoesPorPessoa(Integer idPessoa){

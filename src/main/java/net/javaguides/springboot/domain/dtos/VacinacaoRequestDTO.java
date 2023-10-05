@@ -3,10 +3,8 @@ package net.javaguides.springboot.domain.dtos;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import net.javaguides.springboot.domain.entity.Vacinacao;
 import net.javaguides.springboot.domain.enums.StatusVacinacaoEnum;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
