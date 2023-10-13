@@ -1,6 +1,5 @@
 package net.javaguides.springboot.domain.repository;
 
-import net.javaguides.springboot.domain.entity.Funcionario;
 import net.javaguides.springboot.domain.entity.Pessoa;
 import org.springframework.data.jpa.repository.JpaRepository;
 

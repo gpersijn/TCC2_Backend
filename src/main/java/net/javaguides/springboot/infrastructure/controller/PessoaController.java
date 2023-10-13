@@ -1,7 +1,6 @@
 package net.javaguides.springboot.infrastructure.controller;
 
 import net.javaguides.springboot.domain.entity.Pessoa;
-import net.javaguides.springboot.domain.entity.Tecnico;
 import net.javaguides.springboot.usecase.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

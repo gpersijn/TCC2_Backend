@@ -1,6 +1,6 @@
 package net.javaguides.springboot.infrastructure.controller;
 
-import net.javaguides.springboot.domain.dtos.VacinacaoAtualizacaoDTO;
+import net.javaguides.springboot.domain.dtos.VacinacaoRequestAtualizacaoDTO;
 import net.javaguides.springboot.domain.dtos.VacinacaoRequestDTO;
 import net.javaguides.springboot.domain.dtos.VacinacaoResponseDTO;
 import net.javaguides.springboot.domain.entity.Vacinacao;
@@ -52,7 +52,7 @@ public class VacinacaoController {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<VacinacaoResponseDTO> update(@PathVariable Integer id, @Valid @RequestBody VacinacaoAtualizacaoDTO dto){
+    public ResponseEntity<VacinacaoResponseDTO> update(@PathVariable Integer id, @Valid @RequestBody VacinacaoRequestAtualizacaoDTO dto){
         Vacinacao campanha = service.update(id, dto);
 
         return ResponseEntity.ok().body(new VacinacaoResponseDTO(campanha));

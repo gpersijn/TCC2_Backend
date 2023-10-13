@@ -10,9 +10,8 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class VacinacaoAtualizacaoDTO implements Serializable {
+public class VacinacaoRequestAtualizacaoDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private StatusVacinacaoEnum statusVacinacao;
-
 }
