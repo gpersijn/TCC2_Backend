@@ -7,7 +7,7 @@ import lombok.Setter;
 import net.javaguides.springboot.domain.entity.Exame;
 import net.javaguides.springboot.domain.entity.Pessoa;
 import net.javaguides.springboot.domain.enums.StatusExameEnum;
-import net.javaguides.springboot.domain.enums.TipoExameEnum;
+import net.javaguides.springboot.domain.enums.TipoASOEnum;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -26,7 +26,7 @@ public class ExameResponseDTO {
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dataExame;
 
-    protected TipoExameEnum tipoExame;
+    protected TipoASOEnum tipoExame;
 
     @JsonFormat(pattern = "HH:mm")
     protected LocalTime horaExame;

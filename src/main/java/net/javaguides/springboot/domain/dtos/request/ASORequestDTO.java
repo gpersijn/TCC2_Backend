@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import net.javaguides.springboot.domain.entity.Pessoa;
 import net.javaguides.springboot.domain.enums.ResultadoASOEnum;
+import net.javaguides.springboot.domain.enums.TipoASOEnum;
 import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.validation.constraints.NotBlank;
@@ -41,6 +41,8 @@ public class ASORequestDTO implements Serializable {
     @NotBlank(message = "O campo NOME MEDICO DO PCMSO não pode estar em branco.")
     protected String nomeMedicoPCMSO;
 
+    protected TipoASOEnum tipoASO;
+
     @NotNull(message = "O campo CRM MEDICO DO PCMSO deve ser preenchido.")
     @NotBlank(message = "O campo CRM MEDICO DO PCMSO não pode estar em branco.")
     protected String crmMedicoPCMSO;
@@ -54,7 +56,7 @@ public class ASORequestDTO implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate validade;
 
-    public ASORequestDTO(Integer idASO, String cnpj, String nomeEmpresa, Integer idPessoa, List<String> risco, List<Integer> exames, String nomeMedicoPCMSO, String crmMedicoPCMSO, String nomeMedicoClinico, ResultadoASOEnum resultadoASO, LocalDate validade) {
+    public ASORequestDTO(Integer idASO, String cnpj, String nomeEmpresa, Integer idPessoa, List<String> risco, List<Integer> exames, String nomeMedicoPCMSO, TipoASOEnum tipoASO, String crmMedicoPCMSO, String nomeMedicoClinico, ResultadoASOEnum resultadoASO, LocalDate validade) {
         this.idASO = idASO;
         this.cnpj = cnpj;
         this.nomeEmpresa = nomeEmpresa;
@@ -62,6 +64,7 @@ public class ASORequestDTO implements Serializable {
         this.risco = risco;
         this.exames = exames;
         this.nomeMedicoPCMSO = nomeMedicoPCMSO;
+        this.tipoASO = tipoASO;
         this.crmMedicoPCMSO = crmMedicoPCMSO;
         this.nomeMedicoClinico = nomeMedicoClinico;
         this.resultadoASO = resultadoASO;

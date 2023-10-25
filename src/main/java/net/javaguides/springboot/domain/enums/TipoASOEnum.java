@@ -5,7 +5,10 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum TipoExameEnum {
-    CLINICO,
-    COMPLEMENTAR
+public enum TipoASOEnum {
+    ADMISSIONAL,
+    PEIRODICO,
+    RETORNO,
+    MUDANCA,
+    DEMISSIONAL
 }

@@ -7,6 +7,7 @@ import net.javaguides.springboot.domain.entity.ASO;
 import net.javaguides.springboot.domain.entity.Exame;
 import net.javaguides.springboot.domain.entity.Pessoa;
 import net.javaguides.springboot.domain.enums.ResultadoASOEnum;
+import net.javaguides.springboot.domain.enums.TipoASOEnum;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -22,12 +23,13 @@ public class ASOResponseDTO {
     protected List<String> risco;
     protected List<Exame> exames;
     protected String nomeMedicoPCMSO;
+    protected TipoASOEnum tipoASO;
     protected String crmMedicoPCMSO;
     protected String nomeMedicoClinico;
     protected ResultadoASOEnum resultadoASO;
     protected LocalDate validade;
 
-    public ASOResponseDTO(Integer idASO, String cnpj, String nomeEmpresa, Pessoa pessoa, List<String> risco, List<Exame> exames, String nomeMedicoPCMSO, String crmMedicoPCMSO, String nomeMedicoClinico, ResultadoASOEnum resultadoASO, LocalDate validade) {
+    public ASOResponseDTO(Integer idASO, String cnpj, String nomeEmpresa, Pessoa pessoa, List<String> risco, List<Exame> exames, String nomeMedicoPCMSO, TipoASOEnum tipoASO, String crmMedicoPCMSO, String nomeMedicoClinico, ResultadoASOEnum resultadoASO, LocalDate validade) {
         super();
         this.idASO = idASO;
         this.cnpj = cnpj;
@@ -36,6 +38,7 @@ public class ASOResponseDTO {
         this.risco = risco;
         this.exames = exames;
         this.nomeMedicoPCMSO = nomeMedicoPCMSO;
+        this.tipoASO = tipoASO;
         this.crmMedicoPCMSO = crmMedicoPCMSO;
         this.nomeMedicoClinico = nomeMedicoClinico;
         this.resultadoASO = resultadoASO;
@@ -51,6 +54,7 @@ public class ASOResponseDTO {
         this.risco = aso.getRisco();
         this.exames = aso.getExames();
         this.nomeMedicoPCMSO = aso.getNomeMedicoPCMSO();
+        this.tipoASO = aso.getTipoASO();
         this.crmMedicoPCMSO = aso.getCrmMedicoPCMSO();
         this.nomeMedicoClinico = aso.getNomeMedicoClinico();
         this.resultadoASO = aso.getResultadoASO();

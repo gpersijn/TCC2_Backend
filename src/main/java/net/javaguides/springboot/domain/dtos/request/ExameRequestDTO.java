@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import net.javaguides.springboot.domain.enums.StatusExameEnum;
+import net.javaguides.springboot.domain.enums.TipoASOEnum;
 import net.javaguides.springboot.domain.enums.TipoExameEnum;
 
 import javax.validation.constraints.NotBlank;
