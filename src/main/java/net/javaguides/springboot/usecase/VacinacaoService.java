@@ -1,8 +1,8 @@
 package net.javaguides.springboot.usecase;
 
-import net.javaguides.springboot.domain.dtos.VacinacaoRequestAtualizacaoDTO;
-import net.javaguides.springboot.domain.dtos.VacinacaoRequestDTO;
-import net.javaguides.springboot.domain.dtos.VacinacaoResponseDTO;
+import net.javaguides.springboot.domain.dtos.request.VacinacaoRequestAtualizacaoDTO;
+import net.javaguides.springboot.domain.dtos.request.VacinacaoRequestDTO;
+import net.javaguides.springboot.domain.dtos.response.VacinacaoResponseDTO;
 import net.javaguides.springboot.domain.entity.Campanha;
 import net.javaguides.springboot.domain.entity.Pessoa;
 import net.javaguides.springboot.domain.entity.Vacinacao;

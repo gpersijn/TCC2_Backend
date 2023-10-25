@@ -1,4 +1,4 @@
-package net.javaguides.springboot.domain.dtos;
+package net.javaguides.springboot.domain.dtos.request;
 
 import lombok.Builder;
 import lombok.Getter;

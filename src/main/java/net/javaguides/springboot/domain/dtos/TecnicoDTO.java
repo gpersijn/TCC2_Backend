@@ -41,7 +41,13 @@ public class TecnicoDTO implements Serializable {
 
     protected String senha;
 
+    @NotNull(message = "O campo SETOR deve ser preenchido.")
+    @NotBlank(message = "O campo SETOR não pode estar em branco.")
     protected String setor;
+
+    @NotNull(message = "O campo CARGO deve ser preenchido.")
+    @NotBlank(message = "O campo CARGO não pode estar em branco.")
+    protected String cargo;
 
     protected String telefone;
 
@@ -67,6 +73,7 @@ public class TecnicoDTO implements Serializable {
         this.email = tecnico.getEmail();
         this.senha = tecnico.getSenha();
         this.setor = tecnico.getSetor();
+        this.cargo= tecnico.getCargo();
         this.telefone = tecnico.getTelefone();
         this.dataAniversario = tecnico.getDataAniversario();
         this.sexoEnum = tecnico.getSexoEnum();

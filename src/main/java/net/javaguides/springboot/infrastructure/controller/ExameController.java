@@ -1,7 +1,7 @@
 package net.javaguides.springboot.infrastructure.controller;
 
-import net.javaguides.springboot.domain.dtos.ExameRequestDTO;
-import net.javaguides.springboot.domain.dtos.ExameResponseDTO;
+import net.javaguides.springboot.domain.dtos.request.ExameRequestDTO;
+import net.javaguides.springboot.domain.dtos.response.ExameResponseDTO;
 import net.javaguides.springboot.domain.entity.Exame;
 import net.javaguides.springboot.usecase.ExameService;
 import org.springframework.beans.factory.annotation.Autowired;

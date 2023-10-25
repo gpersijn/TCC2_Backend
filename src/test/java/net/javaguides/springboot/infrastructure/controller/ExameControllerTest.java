@@ -2,7 +2,7 @@ package net.javaguides.springboot.infrastructure.controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import net.javaguides.springboot.domain.dtos.ExameRequestDTO;
+import net.javaguides.springboot.domain.dtos.request.ExameRequestDTO;
 import net.javaguides.springboot.usecase.ExameService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

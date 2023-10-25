@@ -24,8 +24,8 @@ public class Funcionario extends Pessoa {
         addPerfil(PerfilEnum.FUNCIONARIO);
     }
 
-    public Funcionario(Integer id, String primeiroNome, String ultimoNome, String email, String senha, String setor, String telefone, LocalDate dataAniversario, SexoEnum sexo, String cpf){
-        super(id, primeiroNome, ultimoNome, email, senha, setor, telefone, dataAniversario, sexo, cpf);
+    public Funcionario(Integer id, String primeiroNome, String ultimoNome, String email, String senha, String setor, String cargo, String telefone, LocalDate dataAniversario, SexoEnum sexo, String cpf){
+        super(id, primeiroNome, ultimoNome, email, senha, setor, cargo, telefone, dataAniversario, sexo, cpf);
         addPerfil(PerfilEnum.FUNCIONARIO);
     }
 
@@ -37,6 +37,7 @@ public class Funcionario extends Pessoa {
         this.email = funcionario.getEmail();
         if(funcionario.getSenha() != null) this.senha = funcionario.getSenha();
         this.setor = funcionario.getSetor();
+        this.cargo = funcionario.getCargo();
         this.telefone = funcionario.getTelefone();
         this.dataAniversario = funcionario.getDataAniversario();
         this.sexoEnum = funcionario.getSexoEnum();

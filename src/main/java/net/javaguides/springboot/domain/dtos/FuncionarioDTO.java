@@ -44,6 +44,10 @@ public class FuncionarioDTO implements Serializable {
     @NotBlank(message = "O campo SETOR não pode estar em branco.")
     protected String setor;
 
+    @NotNull(message = "O campo CARGO deve ser preenchido.")
+    @NotBlank(message = "O campo CARGO não pode estar em branco.")
+    protected String cargo;
+
     protected String telefone;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
@@ -68,6 +72,7 @@ public class FuncionarioDTO implements Serializable {
         this.email = funcionario.getEmail();
         this.senha = funcionario.getSenha();
         this.setor = funcionario.getSetor();
+        this.cargo = funcionario.getCargo();
         this.telefone = funcionario.getTelefone();
         this.dataAniversario = funcionario.getDataAniversario();
         this.sexoEnum = funcionario.getSexoEnum();

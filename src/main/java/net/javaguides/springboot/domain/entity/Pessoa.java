@@ -41,6 +41,8 @@ public abstract class Pessoa implements Serializable {
 
     protected String setor;
 
+    protected String cargo;
+
     protected String telefone;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
@@ -60,7 +62,7 @@ public abstract class Pessoa implements Serializable {
         super();
     }
 
-    public Pessoa(Integer id, String primeiroNome, String ultimoNome, String email, String senha, String setor, String telefone, LocalDate dataAniversario, SexoEnum sexoEnum, String cpf) {
+    public Pessoa(Integer id, String primeiroNome, String ultimoNome, String email, String senha, String setor, String cargo, String telefone, LocalDate dataAniversario, SexoEnum sexoEnum, String cpf) {
         super();
         this.id = id;
         this.primeiroNome = primeiroNome;
@@ -68,6 +70,7 @@ public abstract class Pessoa implements Serializable {
         this.email = email;
         this.senha = senha;
         this.setor = setor;
+        this.cargo = cargo;
         this.telefone = telefone;
         this.dataAniversario = dataAniversario;
         this.sexoEnum = sexoEnum;
@@ -80,6 +83,5 @@ public abstract class Pessoa implements Serializable {
 
     public void addPerfil(PerfilEnum perfilEnum){
         this.perfis.add(perfilEnum.getCodigo());
-
     }
 }

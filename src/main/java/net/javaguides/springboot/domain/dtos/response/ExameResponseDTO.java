@@ -1,4 +1,4 @@
-package net.javaguides.springboot.domain.dtos;
+package net.javaguides.springboot.domain.dtos.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
@@ -7,6 +7,7 @@ import lombok.Setter;
 import net.javaguides.springboot.domain.entity.Exame;
 import net.javaguides.springboot.domain.entity.Pessoa;
 import net.javaguides.springboot.domain.enums.StatusExameEnum;
+import net.javaguides.springboot.domain.enums.TipoExameEnum;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -17,13 +18,21 @@ import java.time.LocalTime;
 public class ExameResponseDTO {
 
     protected Integer idExame;
+
     protected String nomeExame;
+
     protected StatusExameEnum statusExame;
+
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dataExame;
+
+    protected TipoExameEnum tipoExame;
+
     @JsonFormat(pattern = "HH:mm")
     protected LocalTime horaExame;
+
     protected String localExame;
+
     protected Pessoa pessoa;
 
     public ExameResponseDTO(Integer idExame, String nomeExame, StatusExameEnum statusExame, LocalDate dataExame, LocalTime horaExame, String localExame, Pessoa pessoa) {

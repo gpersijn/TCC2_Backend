@@ -1,6 +1,6 @@
 package net.javaguides.springboot.domain.repository;
 
-import net.javaguides.springboot.domain.dtos.VacinacaoResponseDTO;
+import net.javaguides.springboot.domain.dtos.response.VacinacaoResponseDTO;
 import net.javaguides.springboot.domain.entity.Vacinacao;
 import org.springframework.data.jpa.repository.JpaRepository;
 

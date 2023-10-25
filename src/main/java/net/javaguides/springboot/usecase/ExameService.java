@@ -1,7 +1,7 @@
 package net.javaguides.springboot.usecase;
 
-import net.javaguides.springboot.domain.dtos.ExameRequestDTO;
-import net.javaguides.springboot.domain.dtos.ExameResponseDTO;
+import net.javaguides.springboot.domain.dtos.request.ExameRequestDTO;
+import net.javaguides.springboot.domain.dtos.response.ExameResponseDTO;
 import net.javaguides.springboot.domain.entity.Exame;
 import net.javaguides.springboot.domain.entity.Pessoa;
 import net.javaguides.springboot.domain.enums.StatusExameEnum;

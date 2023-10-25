@@ -18,7 +18,7 @@ public class PessoaController {
     private PessoaService service;
 
     @GetMapping("/aprovadas")
-    public ResponseEntity<List<Pessoa>> listarTecnicosNaoAprovados() {
+    public ResponseEntity<List<Pessoa>> listarPessoasAprovadas() {
         List<Pessoa> pessoasAprovadas = service.listPessoasAprovadas();
         return ResponseEntity.ok(pessoasAprovadas);
     }

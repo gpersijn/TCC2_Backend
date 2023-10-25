@@ -5,8 +5,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import net.javaguides.springboot.domain.dtos.ExameRequestDTO;
+import net.javaguides.springboot.domain.dtos.request.ExameRequestDTO;
 import net.javaguides.springboot.domain.enums.StatusExameEnum;
+import net.javaguides.springboot.domain.enums.TipoExameEnum;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -31,6 +32,8 @@ public class Exame implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dataExame;
 
+    protected TipoExameEnum tipoExame;
+
     @JsonFormat(pattern = "HH:mm")
     protected LocalTime horaExame;
 
@@ -46,17 +49,19 @@ public class Exame implements Serializable {
         this.nomeExame = dto.getNomeExame();
         this.statusExame = dto.getStatusExame();
         this.dataExame = dto.getDataExame();
+        this.tipoExame = dto.getTipoExame();
         this.horaExame = dto.getHoraExame();
         this.localExame = dto.getLocalExame();
         this.pessoa = pessoa;
     }
 
-    public Exame(Integer id, String localExame, StatusExameEnum statusExame, LocalDate dataExame, LocalTime horaExame, String nomeExame, Pessoa pessoa) {
+    public Exame(Integer id, String localExame, StatusExameEnum statusExame, LocalDate dataExame, TipoExameEnum tipoExame, LocalTime horaExame, String nomeExame, Pessoa pessoa) {
         super();
         this.idExame = id;
         this.localExame = localExame;
         this.statusExame = statusExame;
         this.dataExame = dataExame;
+        this.tipoExame = tipoExame;
         this.horaExame = horaExame;
         this.nomeExame = nomeExame;
         this.pessoa = pessoa;

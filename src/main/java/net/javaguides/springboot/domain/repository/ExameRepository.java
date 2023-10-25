@@ -1,6 +1,6 @@
 package net.javaguides.springboot.domain.repository;
 
-import net.javaguides.springboot.domain.dtos.ExameResponseDTO;
+import net.javaguides.springboot.domain.dtos.response.ExameResponseDTO;
 import net.javaguides.springboot.domain.entity.Exame;
 import org.springframework.data.jpa.repository.JpaRepository;
 
