@@ -51,12 +51,16 @@ public class ASORequestDTO implements Serializable {
     @NotBlank(message = "O campo NOME MEDICO CLINICO não pode estar em branco.")
     protected String nomeMedicoClinico;
 
+    @NotNull(message = "O campo CRM MEDICO CLINICO deve ser preenchido.")
+    @NotBlank(message = "O campo CRM MEDICO CLINICO não pode estar em branco.")
+    protected String crmMedicoClinico;
+
     protected ResultadoASOEnum resultadoASO;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate validade;
 
-    public ASORequestDTO(Integer idASO, String cnpj, String nomeEmpresa, Integer idPessoa, List<String> risco, List<Integer> exames, String nomeMedicoPCMSO, TipoASOEnum tipoASO, String crmMedicoPCMSO, String nomeMedicoClinico, ResultadoASOEnum resultadoASO, LocalDate validade) {
+    public ASORequestDTO(Integer idASO, String cnpj, String nomeEmpresa, Integer idPessoa, List<String> risco, List<Integer> exames, String nomeMedicoPCMSO, TipoASOEnum tipoASO, String crmMedicoPCMSO, String nomeMedicoClinico, String crmMedicoClinico, ResultadoASOEnum resultadoASO, LocalDate validade) {
         this.idASO = idASO;
         this.cnpj = cnpj;
         this.nomeEmpresa = nomeEmpresa;
@@ -67,6 +71,7 @@ public class ASORequestDTO implements Serializable {
         this.tipoASO = tipoASO;
         this.crmMedicoPCMSO = crmMedicoPCMSO;
         this.nomeMedicoClinico = nomeMedicoClinico;
+        this.crmMedicoClinico = crmMedicoClinico;
         this.resultadoASO = resultadoASO;
         this.validade = validade;
     }

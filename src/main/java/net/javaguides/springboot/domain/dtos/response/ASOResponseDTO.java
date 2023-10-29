@@ -26,10 +26,11 @@ public class ASOResponseDTO {
     protected TipoASOEnum tipoASO;
     protected String crmMedicoPCMSO;
     protected String nomeMedicoClinico;
+    protected String crmMedicoClinico;
     protected ResultadoASOEnum resultadoASO;
     protected LocalDate validade;
 
-    public ASOResponseDTO(Integer idASO, String cnpj, String nomeEmpresa, Pessoa pessoa, List<String> risco, List<Exame> exames, String nomeMedicoPCMSO, TipoASOEnum tipoASO, String crmMedicoPCMSO, String nomeMedicoClinico, ResultadoASOEnum resultadoASO, LocalDate validade) {
+    public ASOResponseDTO(Integer idASO, String cnpj, String nomeEmpresa, Pessoa pessoa, List<String> risco, List<Exame> exames, String nomeMedicoPCMSO, String crmMedicoClinico, TipoASOEnum tipoASO, String crmMedicoPCMSO, String nomeMedicoClinico, ResultadoASOEnum resultadoASO, LocalDate validade) {
         super();
         this.idASO = idASO;
         this.cnpj = cnpj;
@@ -41,6 +42,7 @@ public class ASOResponseDTO {
         this.tipoASO = tipoASO;
         this.crmMedicoPCMSO = crmMedicoPCMSO;
         this.nomeMedicoClinico = nomeMedicoClinico;
+        this.crmMedicoClinico = crmMedicoClinico;
         this.resultadoASO = resultadoASO;
         this.validade = validade;
     }
@@ -57,6 +59,7 @@ public class ASOResponseDTO {
         this.tipoASO = aso.getTipoASO();
         this.crmMedicoPCMSO = aso.getCrmMedicoPCMSO();
         this.nomeMedicoClinico = aso.getNomeMedicoClinico();
+        this.crmMedicoClinico = aso.getCrmMedicoClinico();
         this.resultadoASO = aso.getResultadoASO();
         this.validade = aso.getValidade();
     }

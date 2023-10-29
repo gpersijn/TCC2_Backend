@@ -50,12 +50,14 @@ public class ASO {
 
     protected String nomeMedicoClinico;
 
+    protected String crmMedicoClinico;
+
     protected ResultadoASOEnum resultadoASO;
 
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate validade;
 
-    public ASO(Integer idASO, String cnpj, String nomeEmpresa, Pessoa pessoa, List<String> risco, List<Exame> exames, String nomeMedicoPCMSO, TipoASOEnum tipoASO, String crmMedicoPCMSO, String nomeMedicoClinico, ResultadoASOEnum resultadoASO, LocalDate validade) {
+    public ASO(Integer idASO, String cnpj, String nomeEmpresa, Pessoa pessoa, List<String> risco, List<Exame> exames, String nomeMedicoPCMSO, TipoASOEnum tipoASO, String crmMedicoPCMSO, String nomeMedicoClinico, String crmMedicoClinico, ResultadoASOEnum resultadoASO, LocalDate validade) {
         super();
         this.idASO = idASO;
         this.cnpj = cnpj;
@@ -67,6 +69,7 @@ public class ASO {
         this.tipoASO = tipoASO;
         this.crmMedicoPCMSO = crmMedicoPCMSO;
         this.nomeMedicoClinico = nomeMedicoClinico;
+        this.crmMedicoClinico = crmMedicoClinico;
         this.resultadoASO = resultadoASO;
         this.validade = validade;
     }
@@ -83,6 +86,7 @@ public class ASO {
         this.tipoASO = dto.getTipoASO();
         this.crmMedicoPCMSO = dto.getCrmMedicoPCMSO();
         this.nomeMedicoClinico = dto.getNomeMedicoClinico();
+        this.crmMedicoClinico = dto.getCrmMedicoClinico();
         this.resultadoASO = dto.getResultadoASO();
         this.validade = dto.getValidade();
     }
