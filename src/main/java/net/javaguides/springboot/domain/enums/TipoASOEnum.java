@@ -7,7 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum TipoASOEnum {
     ADMISSIONAL,
-    PEIRODICO,
+    PERIODICO,
     RETORNO,
     MUDANCA,
     DEMISSIONAL

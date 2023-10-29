@@ -3,6 +3,8 @@ package net.javaguides.springboot.infrastructure.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.javaguides.springboot.domain.dtos.request.ExameRequestDTO;
+import net.javaguides.springboot.domain.enums.StatusExameEnum;
+import net.javaguides.springboot.domain.enums.TipoExameEnum;
 import net.javaguides.springboot.usecase.ExameService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +37,8 @@ public class ExameControllerTest {
         exameRequestDTO.setIdPessoa(7);
         exameRequestDTO.setLocalExame("escola - classe 10");
         exameRequestDTO.setNomeExame("Exame CHECK-UP");
+        exameRequestDTO.setStatusExame(StatusExameEnum.PENDENTE);
+        exameRequestDTO.setTipoExame(TipoExameEnum.COMPLEMENTAR);
 
         String jsonRequestBody = objectMapper.writeValueAsString(exameRequestDTO);
 

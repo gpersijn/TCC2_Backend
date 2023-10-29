@@ -8,6 +8,7 @@ import net.javaguides.springboot.domain.entity.Exame;
 import net.javaguides.springboot.domain.entity.Pessoa;
 import net.javaguides.springboot.domain.enums.StatusExameEnum;
 import net.javaguides.springboot.domain.enums.TipoASOEnum;
+import net.javaguides.springboot.domain.enums.TipoExameEnum;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -26,7 +27,7 @@ public class ExameResponseDTO {
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dataExame;
 
-    protected TipoASOEnum tipoExame;
+    protected TipoExameEnum tipoExame;
 
     @JsonFormat(pattern = "HH:mm")
     protected LocalTime horaExame;
@@ -35,12 +36,13 @@ public class ExameResponseDTO {
 
     protected Pessoa pessoa;
 
-    public ExameResponseDTO(Integer idExame, String nomeExame, StatusExameEnum statusExame, LocalDate dataExame, LocalTime horaExame, String localExame, Pessoa pessoa) {
+    public ExameResponseDTO(Integer idExame, String nomeExame, StatusExameEnum statusExame, LocalDate dataExame, TipoExameEnum tipoExame, LocalTime horaExame, String localExame, Pessoa pessoa) {
         super();
         this.idExame = idExame;
         this.nomeExame = nomeExame;
         this.statusExame = statusExame;
         this.dataExame = dataExame;
+        this.tipoExame = tipoExame;
         this.horaExame = horaExame;
         this.localExame = localExame;
         this.pessoa = pessoa;
@@ -52,6 +54,7 @@ public class ExameResponseDTO {
         this.nomeExame = campanha.getNomeExame();
         this.statusExame = campanha.getStatusExame();
         this.dataExame = campanha.getDataExame();
+        this.tipoExame = campanha.getTipoExame();
         this.horaExame = campanha.getHoraExame();
         this.localExame = campanha.getLocalExame();
         this.pessoa = campanha.getPessoa();
