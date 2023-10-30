@@ -84,6 +84,9 @@ public class ASOService {
         if (dto.getNomeMedicoClinico() != null) {
             oldASO.setNomeMedicoClinico(dto.getNomeMedicoClinico());
         }
+        if (dto.getCrmMedicoClinico() != null) {
+            oldASO.setCrmMedicoClinico(dto.getCrmMedicoClinico());
+        }
         if (dto.getResultadoASO() != null) {
             oldASO.setResultadoASO(dto.getResultadoASO());
         }

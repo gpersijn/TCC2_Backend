@@ -134,6 +134,9 @@ public class FuncionarioService {
         if (dto.getCpf() != null) {
             oldFuncionario.setCpf(dto.getCpf());
         }
+        if (dto.getCargo() != null) {
+            oldFuncionario.setCargo(dto.getCargo());
+        }
         return oldFuncionario;
     }
 }

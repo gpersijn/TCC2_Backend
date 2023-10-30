@@ -67,6 +67,9 @@ public class ExameService {
         if (dto.getLocalExame() != null){
             oldExame.setLocalExame(dto.getLocalExame());
         }
+        if (dto.getTipoExame() != null){
+            oldExame.setTipoExame(dto.getTipoExame());
+        }
 
         return oldExame;
     }

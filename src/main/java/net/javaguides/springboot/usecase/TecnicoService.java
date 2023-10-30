@@ -84,6 +84,9 @@ public class TecnicoService{
         if (dto.getCpf() != null) {
             oldTecnico.setCpf(dto.getCpf());
         }
+        if (dto.getCargo() != null) {
+            oldTecnico.setCargo(dto.getCargo());
+        }
         return oldTecnico;
     }
 
