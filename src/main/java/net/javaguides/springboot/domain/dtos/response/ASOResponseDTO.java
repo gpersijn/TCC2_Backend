@@ -1,5 +1,6 @@
 package net.javaguides.springboot.domain.dtos.response;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,7 +29,9 @@ public class ASOResponseDTO {
     protected String nomeMedicoClinico;
     protected String crmMedicoClinico;
     protected ResultadoASOEnum resultadoASO;
+    @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate validade;
+    @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate dataASO;
 
     public ASOResponseDTO(Integer idASO, String cnpj, String nomeEmpresa, Pessoa pessoa, List<String> risco, List<Exame> exames, String nomeMedicoPCMSO, String crmMedicoClinico, TipoASOEnum tipoASO, String crmMedicoPCMSO, String nomeMedicoClinico, ResultadoASOEnum resultadoASO, LocalDate validade, LocalDate dataASO) {
