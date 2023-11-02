@@ -93,6 +93,9 @@ public class ASOService {
         if (dto.getValidade() != null) {
             oldASO.setValidade(dto.getValidade());
         }
+        if (dto.getDataASO() != null) {
+            oldASO.setDataASO(dto.getDataASO());
+        }
         return oldASO;
     }
 
