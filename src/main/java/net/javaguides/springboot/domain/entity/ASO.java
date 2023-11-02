@@ -24,7 +24,6 @@ public class ASO {
     protected Integer idASO;
 
     @CNPJ
-    @Column(unique = true)
     protected String cnpj;
 
     protected String nomeEmpresa;
