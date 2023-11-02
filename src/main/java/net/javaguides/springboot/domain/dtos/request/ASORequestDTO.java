@@ -60,7 +60,10 @@ public class ASORequestDTO implements Serializable {
     @JsonFormat(pattern = "dd/MM/yyyy")
     protected LocalDate validade;
 
-    public ASORequestDTO(Integer idASO, String cnpj, String nomeEmpresa, Integer idPessoa, List<String> risco, List<Integer> exames, String nomeMedicoPCMSO, TipoASOEnum tipoASO, String crmMedicoPCMSO, String nomeMedicoClinico, String crmMedicoClinico, ResultadoASOEnum resultadoASO, LocalDate validade) {
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    protected LocalDate dataASO;
+
+    public ASORequestDTO(Integer idASO, String cnpj, String nomeEmpresa, Integer idPessoa, List<String> risco, List<Integer> exames, String nomeMedicoPCMSO, TipoASOEnum tipoASO, String crmMedicoPCMSO, String nomeMedicoClinico, String crmMedicoClinico, ResultadoASOEnum resultadoASO, LocalDate validade, LocalDate dataASO) {
         this.idASO = idASO;
         this.cnpj = cnpj;
         this.nomeEmpresa = nomeEmpresa;
@@ -74,5 +77,6 @@ public class ASORequestDTO implements Serializable {
         this.crmMedicoClinico = crmMedicoClinico;
         this.resultadoASO = resultadoASO;
         this.validade = validade;
+        this.dataASO = dataASO;
     }
 }
