@@ -25,6 +25,10 @@ public class RelatorioController {
         return service.getDadosSetor();
     }
 
+    @GetMapping("/grafico-pizza/quantidade-por-aptidao")
+    public Map<String, Object> obterDadosAptidao() {
+        return service.getDadosAptidao();
+    }
 
 
 }

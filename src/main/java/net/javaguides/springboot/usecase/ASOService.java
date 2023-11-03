@@ -12,6 +12,7 @@ import net.javaguides.springboot.usecase.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -105,5 +106,13 @@ public class ASOService {
 
     public List<ASOResponseDTO> findASOPorPessoa(Integer idPessoa){
         return asoRepository.findByPessoaId(idPessoa);
+    }
+
+    public Long countAptoASOs() {
+        return asoRepository.countAptoASOs();
+    }
+
+    public Long countInaptoASOs() {
+        return asoRepository.countInaptoASOs();
     }
 }
