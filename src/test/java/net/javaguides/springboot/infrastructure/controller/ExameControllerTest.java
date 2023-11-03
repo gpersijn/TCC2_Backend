@@ -30,10 +30,10 @@ public class ExameControllerTest {
 
     @Test
     public void testPostExame() throws Exception {
-        // Crie um objeto ExameRequestDTO com os dados que você deseja enviar
+
         ExameRequestDTO exameRequestDTO = new ExameRequestDTO();
         exameRequestDTO.setDataExame(LocalDate.of(2020, 5, 30));
-        exameRequestDTO.setHoraExame(LocalTime.parse("10:01")); // Supondo que você tenha um método apropriado para definir a hora
+        exameRequestDTO.setHoraExame(LocalTime.parse("10:01"));
         exameRequestDTO.setIdPessoa(7);
         exameRequestDTO.setLocalExame("escola - classe 10");
         exameRequestDTO.setNomeExame("Exame CHECK-UP");

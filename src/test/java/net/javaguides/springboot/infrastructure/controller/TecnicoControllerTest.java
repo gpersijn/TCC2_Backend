@@ -35,7 +35,7 @@ public class TecnicoControllerTest {
     public void testFindById() {
         // Arrange
         int tecnicoId = 1;
-        Tecnico tecnico = new Tecnico(); // Preencha com os dados do técnico
+        Tecnico tecnico = new Tecnico();
         when(tecnicoService.findById(tecnicoId)).thenReturn(tecnico);
 
         // Act
@@ -49,7 +49,7 @@ public class TecnicoControllerTest {
     @Test
     public void testFindAll() {
         // Arrange
-        List<Tecnico> tecnicos = new ArrayList<>(); // Preencha com os dados dos técnicos
+        List<Tecnico> tecnicos = new ArrayList<>();
         when(tecnicoService.findAll()).thenReturn(tecnicos);
 
         // Act
@@ -64,8 +64,8 @@ public class TecnicoControllerTest {
     public void testUpdate() {
         // Arrange
         int tecnicoId = 1;
-        TecnicoDTO tecnicoDTO = new TecnicoDTO(); // Preencha com os dados do DTO
-        Tecnico tecnico = new Tecnico(); // Preencha com os dados do técnico atualizado
+        TecnicoDTO tecnicoDTO = new TecnicoDTO();
+        Tecnico tecnico = new Tecnico();
         when(tecnicoService.update(tecnicoId, tecnicoDTO)).thenReturn(tecnico);
 
         // Act
@@ -92,8 +92,8 @@ public class TecnicoControllerTest {
     @Test
     public void testAddPerfil() {
         // Arrange
-        PerfilDTO perfilDTO = new PerfilDTO(); // Preencha com os dados do perfil
-        Tecnico tecnico = new Tecnico(); // Preencha com os dados do técnico
+        PerfilDTO perfilDTO = new PerfilDTO();
+        Tecnico tecnico = new Tecnico();
         when(tecnicoService.adicionarPerfil(perfilDTO.getEmail(), perfilDTO.getPerfilEnum())).thenReturn(tecnico);
 
         // Act
@@ -107,7 +107,7 @@ public class TecnicoControllerTest {
     @Test
     public void testListarTecnicosNaoAprovados() {
         // Arrange
-        List<Tecnico> tecnicosNaoAprovados = new ArrayList<>(); // Preencha com os dados dos técnicos não aprovados
+        List<Tecnico> tecnicosNaoAprovados = new ArrayList<>();
         when(tecnicoService.listTecnicosNaoAprovados()).thenReturn(tecnicosNaoAprovados);
 
         // Act
@@ -122,7 +122,7 @@ public class TecnicoControllerTest {
     public void testAprovar() {
         // Arrange
         int tecnicoId = 1;
-        Tecnico tecnico = new Tecnico(); // Preencha com os dados do técnico aprovado
+        Tecnico tecnico = new Tecnico();
         when(tecnicoService.aprovarLogin(tecnicoId)).thenReturn(tecnico);
 
         // Act
