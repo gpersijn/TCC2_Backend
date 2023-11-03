@@ -14,14 +14,17 @@ public interface ASORepository extends JpaRepository<ASO, Integer> {
     List<ASOResponseDTO> findByPessoaId(Integer idPessoa);
 
     @Query("SELECT COUNT(DISTINCT a.pessoa) FROM ASO a " +
-            "WHERE a.dataASO = (SELECT MAX(b.dataASO) FROM ASO b WHERE b.pessoa = a.pessoa) " +
-            "AND (a.validade > CURRENT_DATE) " +
+            "WHERE a.idASO IN " +
+            "(SELECT MAX(b.idASO) FROM ASO b WHERE b.pessoa = a.pessoa GROUP BY b.pessoa) " +
+            "AND a.validade > CURRENT_DATE " +
             "AND a.resultadoASO = 0")
     Long countAptoASOs();
 
     @Query("SELECT COUNT(DISTINCT a.pessoa) FROM ASO a " +
-            "WHERE a.dataASO = (SELECT MAX(b.dataASO) FROM ASO b WHERE b.pessoa = a.pessoa) " +
-            "AND (a.validade > CURRENT_DATE) " +
+            "WHERE a.idASO IN " +
+            "(SELECT MAX(b.idASO) FROM ASO b WHERE b.pessoa = a.pessoa GROUP BY b.pessoa) " +
+            "AND a.validade > CURRENT_DATE " +
             "AND a.resultadoASO = 1")
     Long countInaptoASOs();
+
 }

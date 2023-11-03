@@ -87,7 +87,7 @@ public class RelatorioService {
 
         response.put("dados", dadosApto);
         response.put("porcentagem", dadosPorcentagem);
-        response.put("total pessoas", total);
+        response.put("total pessoas com ASO", total);
 
         return response;
     }
