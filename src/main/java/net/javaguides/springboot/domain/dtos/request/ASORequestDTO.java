@@ -54,7 +54,6 @@ public class ASORequestDTO implements Serializable {
 
     @NotNull(message = "O campo CRM MEDICO CLINICO deve ser preenchido.")
     @NotBlank(message = "O campo CRM MEDICO CLINICO não pode estar em branco.")
-    @Pattern(regexp = "/^\\d{6}\\/[A-Z]{2}$/", message = "CRM inválido, deve conter pelo menos 2 letras e 1 número.")
     protected String crmMedicoClinico;
 
     protected ResultadoASOEnum resultadoASO;
