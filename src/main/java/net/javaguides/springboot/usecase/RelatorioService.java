@@ -53,6 +53,7 @@ public class RelatorioService {
                 Map<String, Object> setorData = new HashMap<>();
                 setorData.put("setor", setor);
                 setorData.put("quantidade", quantidade.intValue());
+                setorData.put("porcentagem", Math.round((double) quantidade / totalPessoas * 1000) / 10.0);
                 responseList.add(setorData);
                 qtdNaoNula += quantidade;
             }
@@ -61,8 +62,9 @@ public class RelatorioService {
         int qtdSemSetor = (int) (totalPessoas - qtdNaoNula);
         if (qtdSemSetor > 0) {
             Map<String, Object> semSetorData = new HashMap<>();
-            semSetorData.put("nome", "Sem setor");
+            semSetorData.put("setor", "Sem setor");
             semSetorData.put("quantidade", qtdSemSetor);
+            semSetorData.put("porcentagem", qtdSemSetor);
             responseList.add(semSetorData);
         }
 
