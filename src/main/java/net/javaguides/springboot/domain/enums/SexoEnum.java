@@ -7,7 +7,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum SexoEnum {
     MASCULINO("Masculino"),
-    FEMININO("Feminino");
+    FEMININO("Feminino"),
+    OUTRO("outro");
 
     private String descricao;
 }
