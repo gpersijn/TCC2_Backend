@@ -21,7 +21,7 @@ public class RelatorioController {
     }
 
     @GetMapping("/grafico-pizza/quantidade-por-setor")
-    public Map<String, Object> obterDadosSetor() {
+    public Object[] obterDadosSetor() {
         return service.getDadosSetor();
     }
 

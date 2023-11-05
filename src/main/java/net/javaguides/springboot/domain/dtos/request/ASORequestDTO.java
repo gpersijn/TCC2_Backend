@@ -10,6 +10,7 @@ import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
@@ -53,6 +54,7 @@ public class ASORequestDTO implements Serializable {
 
     @NotNull(message = "O campo CRM MEDICO CLINICO deve ser preenchido.")
     @NotBlank(message = "O campo CRM MEDICO CLINICO não pode estar em branco.")
+    @Pattern(regexp = "^(.*[A-Z]){2,}.*(\\d).*$", message = "CRM inválido, deve conter pelo menos 2 letras e 1 número.")
     protected String crmMedicoClinico;
 
     protected ResultadoASOEnum resultadoASO;
