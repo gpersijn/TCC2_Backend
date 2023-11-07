@@ -1,5 +1,6 @@
 package net.javaguides.springboot.usecase;
 
+import net.javaguides.springboot.domain.enums.StatusVacinacaoEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +17,6 @@ public class RelatorioService {
 
     @Autowired
     private ASOService asoService;
-
-    @Autowired
-    private CampanhaService campanhaService;
 
     @Autowired
     private VacinacaoService vacinacaoService;
@@ -114,6 +112,24 @@ public class RelatorioService {
 
             responseList.add(campanhaData);
         }
+        return responseList.toArray();
+    }
+
+    public Object[] getDadosStatusCampanha(Integer idCampanha) {
+        List<Object> responseList = new ArrayList<>();
+
+        List<Object[]> listagem = vacinacaoService.listContagemVacinacoesPorStatusCampanha(idCampanha);
+
+        for (Object[] row : listagem) {
+            StatusVacinacaoEnum status = (StatusVacinacaoEnum) row[0];
+            Long quantidade = (Long) row[1];
+
+            Map<String, Object> dadosStatus = new HashMap<>();
+            dadosStatus.put("status", status.toString());
+            dadosStatus.put("quantidade", quantidade);
+            responseList.add(dadosStatus);
+        }
+
         return responseList.toArray();
     }
 }
