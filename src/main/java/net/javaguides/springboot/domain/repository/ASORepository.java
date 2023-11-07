@@ -4,9 +4,7 @@ import net.javaguides.springboot.domain.dtos.response.ASOResponseDTO;
 import net.javaguides.springboot.domain.entity.ASO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface ASORepository extends JpaRepository<ASO, Integer> {

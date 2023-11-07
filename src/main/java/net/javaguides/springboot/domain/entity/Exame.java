@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 import net.javaguides.springboot.domain.dtos.request.ExameRequestDTO;
 import net.javaguides.springboot.domain.enums.StatusExameEnum;
-import net.javaguides.springboot.domain.enums.TipoASOEnum;
 import net.javaguides.springboot.domain.enums.TipoExameEnum;
 
 import javax.persistence.*;

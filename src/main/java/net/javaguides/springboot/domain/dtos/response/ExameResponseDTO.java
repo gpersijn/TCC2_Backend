@@ -7,7 +7,6 @@ import lombok.Setter;
 import net.javaguides.springboot.domain.entity.Exame;
 import net.javaguides.springboot.domain.entity.Pessoa;
 import net.javaguides.springboot.domain.enums.StatusExameEnum;
-import net.javaguides.springboot.domain.enums.TipoASOEnum;
 import net.javaguides.springboot.domain.enums.TipoExameEnum;
 
 import java.time.LocalDate;

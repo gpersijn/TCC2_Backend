@@ -30,5 +30,10 @@ public class RelatorioController {
         return service.getDadosAptidao();
     }
 
+    @GetMapping("/grafico-torre/quantidade-por-campanha")
+    public Object[] obterDadosCampanha() {
+        return service.getDadosCampanha();
+    }
+
 
 }

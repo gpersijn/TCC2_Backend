@@ -3,7 +3,6 @@ package net.javaguides.springboot.usecase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +16,12 @@ public class RelatorioService {
 
     @Autowired
     private ASOService asoService;
+
+    @Autowired
+    private CampanhaService campanhaService;
+
+    @Autowired
+    private VacinacaoService vacinacaoService;
 
     public Map<String, Object> getDadosSexo() {
         Map<String, Object> response = new HashMap<>();
@@ -93,4 +98,22 @@ public class RelatorioService {
         return response;
     }
 
+    public Object[] getDadosCampanha() {
+        List<Object> responseList = new ArrayList<>();
+        List<Object[]> listaCampanhaContagem = vacinacaoService.listContagemVacinacoesPorCampanha();
+
+        for (Object[] row : listaCampanhaContagem) {
+            String campanha = (String) row[0];
+            Long qtdVacinacoes = (Long) row[1];
+            Long qtdVacinados = (Long) row[2];
+
+            Map<String, Object> campanhaData = new HashMap<>();
+            campanhaData.put("campanha", campanha);
+            campanhaData.put("quantidadeVacinacoes", qtdVacinacoes);
+            campanhaData.put("quantidadeVacinados", qtdVacinados);
+
+            responseList.add(campanhaData);
+        }
+        return responseList.toArray();
+    }
 }

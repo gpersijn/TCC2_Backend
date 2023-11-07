@@ -80,4 +80,8 @@ public class VacinacaoService {
     public List<VacinacaoResponseDTO> findVacinacoesPorPessoa(Integer idPessoa){
         return vacinacaoRepository.findByPessoaId(idPessoa);
     }
+
+    public List<Object[]> listContagemVacinacoesPorCampanha(){
+        return vacinacaoRepository.listCountVacinacoesPorCampanha();
+    }
 }
