@@ -85,7 +85,8 @@ public class VacinacaoService {
         return vacinacaoRepository.listCountVacinacoesPorCampanha();
     }
 
-    public List<Object[]> listContagemVacinacoesPorStatusCampanha(Integer idCampanha){
-        return vacinacaoRepository.countVacinacoesPorStatusCampanha(idCampanha);
+
+    public Integer contarQuantidadePorStatusCampanha(Integer idCampanha, StatusVacinacaoEnum statusEnum) {
+        return vacinacaoRepository.contarQuantidadePorStatusCampanha(idCampanha, statusEnum);
     }
 }

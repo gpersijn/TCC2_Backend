@@ -118,14 +118,12 @@ public class RelatorioService {
     public Object[] getDadosStatusCampanha(Integer idCampanha) {
         List<Object> responseList = new ArrayList<>();
 
-        List<Object[]> listagem = vacinacaoService.listContagemVacinacoesPorStatusCampanha(idCampanha);
-
-        for (Object[] row : listagem) {
-            StatusVacinacaoEnum status = (StatusVacinacaoEnum) row[0];
-            Long quantidade = (Long) row[1];
+        for (StatusVacinacaoEnum statusEnum : StatusVacinacaoEnum.values()) {
+            Integer quantidade = vacinacaoService.contarQuantidadePorStatusCampanha(idCampanha, statusEnum);
+            String status = statusEnum.toString();
 
             Map<String, Object> dadosStatus = new HashMap<>();
-            dadosStatus.put("status", status.toString());
+            dadosStatus.put("status", status);
             dadosStatus.put("quantidade", quantidade);
             responseList.add(dadosStatus);
         }
