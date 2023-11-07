@@ -41,5 +41,14 @@ public class RelatorioController {
         return service.getDadosStatusCampanha(idCampanha);
     }
 
+    @GetMapping("/grafico-torre/quantidade-por-tipo-exame")
+    public Object[] obterDadosExames() {
+        return service.getDadosExames();
+    }
+
+    @GetMapping("/grafico-pizza/quantidade-por-status-exame")
+    public Object[] obterDadosStatusExames() {
+        return service.getDadosStatusExames();
+    }
 
 }

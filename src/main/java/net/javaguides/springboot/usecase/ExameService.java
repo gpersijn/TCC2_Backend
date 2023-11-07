@@ -81,4 +81,13 @@ public class ExameService {
     public List<ExameResponseDTO> findExamesPorPessoa(Integer idPessoa) {
         return exameRepository.findByPessoaId(idPessoa);
     }
+
+    public List<Object[]> conteQuantidadePorTipoExame() {
+        return exameRepository.listQuantidadeTiposExame();
+    }
+
+    public List<Object[]> conteQuantidadePorStatusExame() {
+        return exameRepository.listQuantidadeStatusExame();
+    }
+
 }

@@ -1,6 +1,8 @@
 package net.javaguides.springboot.usecase;
 
+import net.javaguides.springboot.domain.enums.StatusExameEnum;
 import net.javaguides.springboot.domain.enums.StatusVacinacaoEnum;
+import net.javaguides.springboot.domain.enums.TipoExameEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,9 @@ public class RelatorioService {
 
     @Autowired
     private ASOService asoService;
+
+    @Autowired
+    private ExameService exameService;
 
     @Autowired
     private VacinacaoService vacinacaoService;
@@ -126,6 +131,40 @@ public class RelatorioService {
             dadosStatus.put("status", status);
             dadosStatus.put("quantidade", quantidade);
             responseList.add(dadosStatus);
+        }
+
+        return responseList.toArray();
+    }
+
+    public Object[] getDadosExames() {
+        List<Object> responseList = new ArrayList<>();
+        List<Object[]> lista = exameService.conteQuantidadePorTipoExame();
+
+        for(Object[] row : lista){
+            TipoExameEnum tipoExame = (TipoExameEnum) row[0];
+            Long quantidade = (Long) row[1];
+
+            Map<String, Object> dadosExame = new HashMap<>();
+            dadosExame.put("tipoExame", tipoExame.toString());
+            dadosExame.put("quantidade", quantidade);
+            responseList.add(dadosExame);
+        }
+
+        return responseList.toArray();
+    }
+
+    public Object[] getDadosStatusExames() {
+        List<Object> responseList = new ArrayList<>();
+        List<Object[]> lista = exameService.conteQuantidadePorStatusExame();
+
+        for(Object[] row : lista){
+            StatusExameEnum statusExame = (StatusExameEnum) row[0];
+            Long quantidade = (Long) row[1];
+
+            Map<String, Object> dadosExame = new HashMap<>();
+            dadosExame.put("statusExame", statusExame.toString());
+            dadosExame.put("quantidade", quantidade);
+            responseList.add(dadosExame);
         }
 
         return responseList.toArray();
