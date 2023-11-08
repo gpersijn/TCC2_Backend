@@ -120,7 +120,6 @@ public class FuncionarioServiceTest {
 
     @Test
     public void testAtualizarValoresTodosCamposPreenchidos() {
-        // Crie um mock de FuncionarioDTO com valores reais preenchidos em todos os campos
         FuncionarioDTO dto = new FuncionarioDTO();
         dto.setPrimeiroNome("NovoPrimeiroNome");
         dto.setUltimoNome("NovoUltimoNome");
@@ -173,7 +172,7 @@ public class FuncionarioServiceTest {
     @Test
     public void testValidaCpfEmailEmailAlreadyExists() {
         FuncionarioDTO dto = new FuncionarioDTO();
-        dto.setIdFuncionario(1); // Set the ID to a value that would not match any existing Pessoa
+        dto.setIdFuncionario(1);
 
         when(pessoaRepository.findByEmail(dto.getEmail())).thenReturn(Optional.of(new Funcionario()));
 

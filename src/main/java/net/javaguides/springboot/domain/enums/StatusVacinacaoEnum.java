@@ -7,7 +7,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum StatusVacinacaoEnum {
     PENDENTE,
-    CONCLUÍDO,
+    CONCLUIDO,
     ATRASADO,
     CANCELADO
 }

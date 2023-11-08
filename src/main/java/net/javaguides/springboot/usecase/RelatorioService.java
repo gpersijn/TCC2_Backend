@@ -6,6 +6,8 @@ import net.javaguides.springboot.domain.enums.TipoExameEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -139,15 +141,22 @@ public class RelatorioService {
     public Object[] getDadosExames() {
         List<Object> responseList = new ArrayList<>();
         List<Object[]> lista = exameService.conteQuantidadePorTipoExame();
+        Month mesAtual = Month.of(LocalDate.now().getMonthValue());
+        Month mesLimite = mesAtual.minus(6);
 
         for(Object[] row : lista){
             TipoExameEnum tipoExame = (TipoExameEnum) row[0];
             Long quantidade = (Long) row[1];
+            Integer mes = (Integer) row[2];
 
-            Map<String, Object> dadosExame = new HashMap<>();
-            dadosExame.put("tipoExame", tipoExame.toString());
-            dadosExame.put("quantidade", quantidade);
-            responseList.add(dadosExame);
+            if (Month.of(mes).compareTo(mesLimite) >= 0 && Month.of(mes).compareTo(mesAtual) <= 0) {
+                Map<String, Object> dadosExame = new HashMap<>();
+                dadosExame.put("tipoExame", tipoExame.toString());
+                dadosExame.put("quantidade", quantidade);
+                dadosExame.put("mes", mes);
+                responseList.add(dadosExame);
+            }
+
         }
 
         return responseList.toArray();

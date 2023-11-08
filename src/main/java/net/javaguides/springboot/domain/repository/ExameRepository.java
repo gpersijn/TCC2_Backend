@@ -10,7 +10,7 @@ import java.util.List;
 public interface ExameRepository extends JpaRepository<Exame, Integer> {
 
     List<ExameResponseDTO> findByPessoaId(Integer idPessoa);
-    @Query("SELECT v.tipoExame, COUNT(v) FROM Exame v GROUP BY v.tipoExame")
+    @Query("SELECT v.tipoExame, COUNT(v), MONTH(v.dataExame) FROM Exame v WHERE v.statusExame = 1 GROUP BY v.tipoExame, MONTH(v.dataExame)")
     List<Object[]> listQuantidadeTiposExame();
     @Query("SELECT v.statusExame, COUNT(v) FROM Exame v GROUP BY v.statusExame")
     List<Object[]> listQuantidadeStatusExame();
