@@ -20,4 +20,6 @@ public interface VacinacaoRepository  extends JpaRepository<Vacinacao, Integer> 
     @Query("SELECT COUNT(v) FROM Vacinacao v WHERE v.campanha.id = :idCampanha AND v.status = :status")
     Integer contarQuantidadePorStatusCampanha(@Param("idCampanha") Integer idCampanha, @Param("status") StatusVacinacaoEnum status);
 
+    @Query("SELECT COUNT(v) FROM Vacinacao v WHERE v.campanha.id = :idCampanha AND v.status <> 'CANCELADO'")
+    Integer contarQuantidadeTotalPorCampanha(@Param("idCampanha") Integer idCampanha);
 }

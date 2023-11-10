@@ -26,6 +26,10 @@ public class PessoaService {
         return pessoaRepository.countBySexoEnumAndIsApproved(SexoEnum.FEMININO, true);
     }
 
+    public Integer contarOutros() {
+        return pessoaRepository.countBySexoEnumAndIsApproved(SexoEnum.OUTRO, true);
+    }
+
     public Integer contarPessoas() {
         return pessoaRepository.countByIsApprovedTrue();
     }

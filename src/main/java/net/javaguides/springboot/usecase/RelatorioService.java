@@ -32,6 +32,7 @@ public class RelatorioService {
         Map<String, Object> response = new HashMap<>();
         Integer qtdHomens = pessoaService.contarHomens();
         Integer qtdMulheres = pessoaService.contarMulheres();
+        Integer qtdOutros = pessoaService.contarOutros();
         Integer totalPessoas = pessoaService.contarPessoas();
 
         response.put("total pessoas", Long.valueOf(totalPessoas));
@@ -39,11 +40,13 @@ public class RelatorioService {
         Map<String, Integer> dadosSexo = new HashMap<>();
         dadosSexo.put("homens", qtdHomens);
         dadosSexo.put("mulheres", qtdMulheres);
+        dadosSexo.put("outros", qtdOutros);
         response.put("dados", dadosSexo);
 
         Map<String, Double> dadosPorcentagem = new HashMap<>();
         dadosPorcentagem.put("homens", Math.round(((double) qtdHomens / totalPessoas) * 1000) / 10.0);
         dadosPorcentagem.put("mulheres", Math.round(((double) qtdMulheres / totalPessoas) * 1000) / 10.0);
+        dadosPorcentagem.put("outros", Math.round(((double) qtdOutros / totalPessoas) * 1000) / 10.0);
         response.put("porcentagem", dadosPorcentagem);
 
         return response;
@@ -124,6 +127,7 @@ public class RelatorioService {
 
     public Object[] getDadosStatusCampanha(Integer idCampanha) {
         List<Object> responseList = new ArrayList<>();
+        Integer totalPorCampanha = vacinacaoService.contarQuantidadeTotalPorCampanha(idCampanha);
 
         for (StatusVacinacaoEnum statusEnum : StatusVacinacaoEnum.values()) {
             Integer quantidade = vacinacaoService.contarQuantidadePorStatusCampanha(idCampanha, statusEnum);
@@ -132,6 +136,7 @@ public class RelatorioService {
             Map<String, Object> dadosStatus = new HashMap<>();
             dadosStatus.put("status", status);
             dadosStatus.put("quantidade", quantidade);
+            dadosStatus.put("porcentagem", Math.round((double) quantidade / totalPorCampanha * 1000) / 10.0);
             responseList.add(dadosStatus);
         }
 
