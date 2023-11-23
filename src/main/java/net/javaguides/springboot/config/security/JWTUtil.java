@@ -45,6 +45,7 @@ public class JWTUtil {
         claims.put("isApproved", pessoa.getIsApproved());
         claims.put("perfis", pessoa.getPerfis());
         claims.put("setor", pessoa.getSetor());
+        claims.put("cargo", pessoa.getCargo());
 
         return Jwts.builder()
                 .setClaims(claims)

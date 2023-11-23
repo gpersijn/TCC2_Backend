@@ -12,7 +12,7 @@ public class FuncionarioDTOMock {
 
     public static FuncionarioDTO withDefaultValues() {
         FuncionarioDTO dto = new FuncionarioDTO();
-        dto.setIdFuncionario(1);
+        dto.setId(1);
         dto.setIsApproved(Boolean.FALSE);
         dto.setSenha("hashedPassword");
         dto.setPrimeiroNome("John");

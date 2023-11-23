@@ -31,7 +31,7 @@ public class Funcionario extends Pessoa {
 
     public Funcionario (FuncionarioDTO funcionario){
         super();
-        this.id = funcionario.getIdFuncionario();
+        this.id = funcionario.getId();
         this.primeiroNome = funcionario.getPrimeiroNome();
         this.ultimoNome = funcionario.getUltimoNome();
         this.email = funcionario.getEmail();

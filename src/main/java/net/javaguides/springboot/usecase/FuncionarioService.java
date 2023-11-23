@@ -39,7 +39,7 @@ public class FuncionarioService {
     }
 
     public Funcionario create(FuncionarioDTO dto) {
-        dto.setIdFuncionario(null);
+        dto.setId(null);
         dto.setIsApproved(Boolean.FALSE);
         dto.addPerfil(PerfilEnum.FUNCIONARIO);
         dto.setSenha(encoder.encode(dto.getSenha()));
@@ -49,7 +49,7 @@ public class FuncionarioService {
     }
 
     public Funcionario update(Integer id, FuncionarioDTO dto) {
-        dto.setIdFuncionario(id);
+        dto.setId(id);
         Funcionario oldFuncionario = findById(id);
         validaCpfEmail(dto);
 
@@ -66,11 +66,11 @@ public class FuncionarioService {
 
     public void validaCpfEmail(FuncionarioDTO dto) {
         Optional<Pessoa> pessoa = pessoaRepository.findByCpf(dto.getCpf());
-        if(pessoa.isPresent() && !Objects.equals(pessoa.get().getId(), dto.getIdFuncionario())){
+        if(pessoa.isPresent() && !Objects.equals(pessoa.get().getId(), dto.getId())){
             throw new DataViolationException("Cpf já cadastrado no sistema!");
         }
         pessoa = pessoaRepository.findByEmail(dto.getEmail());
-        if(pessoa.isPresent() && !Objects.equals(pessoa.get().getId(), dto.getIdFuncionario())){
+        if(pessoa.isPresent() && !Objects.equals(pessoa.get().getId(), dto.getId())){
             throw new DataViolationException("Email já cadastrado no sistema!");
         }
     }

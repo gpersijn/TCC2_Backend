@@ -172,7 +172,7 @@ public class FuncionarioServiceTest {
     @Test
     public void testValidaCpfEmailEmailAlreadyExists() {
         FuncionarioDTO dto = new FuncionarioDTO();
-        dto.setIdFuncionario(1);
+        dto.setId(1);
 
         when(pessoaRepository.findByEmail(dto.getEmail())).thenReturn(Optional.of(new Funcionario()));
 
@@ -184,7 +184,7 @@ public class FuncionarioServiceTest {
     @Test
     public void testValidaCpfEmailCpfAlreadyExists() {
         FuncionarioDTO dto = new FuncionarioDTO();
-        dto.setIdFuncionario(1);
+        dto.setId(1);
 
         when(pessoaRepository.findByCpf(dto.getCpf())).thenReturn(Optional.of(new Funcionario()));
 
@@ -214,7 +214,7 @@ public class FuncionarioServiceTest {
         Funcionario updatedFuncionario = funcionarioService.update(id, dto);
 
         assertNotNull(updatedFuncionario);
-        assertEquals(dto.getIdFuncionario(), updatedFuncionario.getId());
+        assertEquals(dto.getId(), updatedFuncionario.getId());
     }
 
 }
