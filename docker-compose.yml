@@ -1,0 +1,9 @@
+version: '3'
+services:
+  app:
+    container_name: "app"
+    build: .
+    ports:
+      - "8089:8089"
+    volumes:
+      - ./src:/app/src
