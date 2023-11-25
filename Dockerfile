@@ -14,6 +14,6 @@ EXPOSE 8089
 
 COPY --from=build /target/registration-login-spring-boot-security-thymeleaf-mysql-0.0.1-SNAPSHOT.jar app.jar
 
-ENTRYPOINT["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
 
 CMD ["mvn", "spring-boot:run"]
