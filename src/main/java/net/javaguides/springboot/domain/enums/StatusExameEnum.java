@@ -5,10 +5,9 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum SexoEnum {
-    MASCULINO("Masculino"),
-    FEMININO("Feminino"),
-    OUTRO("outro");
-
-    private String descricao;
+public enum StatusExameEnum {
+    PENDENTE,
+    CONCLUIDO,
+    EXPIRADO,
+    CANCELADO
 }

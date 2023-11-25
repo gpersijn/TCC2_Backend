@@ -22,19 +22,20 @@ public class Tecnico extends Pessoa {
         addPerfil(PerfilEnum.TECNICO);
     }
 
-    public Tecnico(Integer id, String primeiroNome, String ultimoNome, String email, String senha, String setor, String telefone, LocalDate dataAniversario, SexoEnum sexo, String cpf) {
-        super(id, primeiroNome, ultimoNome, email, senha, setor, telefone, dataAniversario, sexo, cpf);
+    public Tecnico(Integer id, String primeiroNome, String ultimoNome, String email, String senha, String setor, String cargo, String telefone, LocalDate dataAniversario, SexoEnum sexo, String cpf) {
+        super(id, primeiroNome, ultimoNome, email, senha, setor, cargo, telefone, dataAniversario, sexo, cpf);
         addPerfil(PerfilEnum.TECNICO);
     }
 
     public Tecnico (TecnicoDTO tecnico){
         super();
-        this.id = tecnico.getId();
+        this.id = tecnico.getIdTecnico();
         this.primeiroNome = tecnico.getPrimeiroNome();
         this.ultimoNome = tecnico.getUltimoNome();
         this.email = tecnico.getEmail();
         if(tecnico.getSenha() != null) this.senha = tecnico.getSenha();
         this.setor = tecnico.getSetor();
+        this.cargo = tecnico.getCargo();
         this.telefone = tecnico.getTelefone();
         this.dataAniversario = tecnico.getDataAniversario();
         this.sexoEnum = tecnico.getSexoEnum();

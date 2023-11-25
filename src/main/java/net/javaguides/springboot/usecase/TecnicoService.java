@@ -39,7 +39,7 @@ public class TecnicoService{
     }
 
     public Tecnico create(@Valid TecnicoDTO dto) {
-        dto.setId(null);
+        dto.setIdTecnico(null);
         dto.setIsApproved(Boolean.FALSE);
         dto.setSenha(encoder.encode(dto.getSenha()));
         dto.addPerfil(PerfilEnum.TECNICO);
@@ -49,7 +49,7 @@ public class TecnicoService{
     }
 
     public Tecnico update(Integer id, TecnicoDTO dto) {
-        dto.setId(id);
+        dto.setIdTecnico(id);
         Tecnico oldTecnico = findById(id);
 
         validaCpfEmail(dto);
@@ -84,6 +84,9 @@ public class TecnicoService{
         if (dto.getCpf() != null) {
             oldTecnico.setCpf(dto.getCpf());
         }
+        if (dto.getCargo() != null) {
+            oldTecnico.setCargo(dto.getCargo());
+        }
         return oldTecnico;
     }
 
@@ -95,11 +98,11 @@ public class TecnicoService{
 
     public void validaCpfEmail(TecnicoDTO dto) {
         Optional<Pessoa> pessoa = pessoaRepository.findByCpf(dto.getCpf());
-        if(pessoa.isPresent() && pessoa.get().getId() != dto.getId()){
+        if(pessoa.isPresent() && pessoa.get().getId() != dto.getIdTecnico()){
             throw new DataViolationException("Cpf já cadastrado no sistema!");
         }
         pessoa = pessoaRepository.findByEmail(dto.getEmail());
-        if(pessoa.isPresent() && pessoa.get().getId() != dto.getId()){
+        if(pessoa.isPresent() && pessoa.get().getId() != dto.getIdTecnico()){
             throw new DataViolationException("Email já cadastrado no sistema!");
         }
     }

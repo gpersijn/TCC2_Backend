@@ -8,6 +8,7 @@ import net.javaguides.springboot.domain.enums.PerfilEnum;
 import net.javaguides.springboot.domain.enums.SexoEnum;
 import org.hibernate.validator.constraints.br.CPF;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
 public class TecnicoDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    protected Integer id;
+    protected Integer idTecnico;
 
     protected Boolean isApproved;
 
@@ -35,11 +36,18 @@ public class TecnicoDTO implements Serializable {
 
     @NotNull(message = "O campo EMAIL deve ser preenchido.")
     @NotBlank(message = "O campo EMAIL não pode estar em branco.")
+    @Email
     protected String email;
 
     protected String senha;
 
+    @NotNull(message = "O campo SETOR deve ser preenchido.")
+    @NotBlank(message = "O campo SETOR não pode estar em branco.")
     protected String setor;
+
+    @NotNull(message = "O campo CARGO deve ser preenchido.")
+    @NotBlank(message = "O campo CARGO não pode estar em branco.")
+    protected String cargo;
 
     protected String telefone;
 
@@ -59,12 +67,13 @@ public class TecnicoDTO implements Serializable {
 
     public TecnicoDTO(Tecnico tecnico){
         super();
-        this.id = tecnico.getId();
+        this.idTecnico = tecnico.getId();
         this.primeiroNome = tecnico.getPrimeiroNome();
         this.ultimoNome = tecnico.getUltimoNome();
         this.email = tecnico.getEmail();
         this.senha = tecnico.getSenha();
         this.setor = tecnico.getSetor();
+        this.cargo= tecnico.getCargo();
         this.telefone = tecnico.getTelefone();
         this.dataAniversario = tecnico.getDataAniversario();
         this.sexoEnum = tecnico.getSexoEnum();

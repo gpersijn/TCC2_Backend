@@ -1,7 +1,6 @@
 package net.javaguides.springboot.mocks;
 
 import net.javaguides.springboot.domain.dtos.FuncionarioDTO;
-import net.javaguides.springboot.domain.dtos.TecnicoDTO;
 import net.javaguides.springboot.domain.enums.PerfilEnum;
 import net.javaguides.springboot.domain.enums.SexoEnum;
 

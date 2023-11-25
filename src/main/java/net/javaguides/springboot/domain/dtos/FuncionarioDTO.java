@@ -7,6 +7,7 @@ import net.javaguides.springboot.domain.entity.Funcionario;
 import net.javaguides.springboot.domain.enums.PerfilEnum;
 import net.javaguides.springboot.domain.enums.SexoEnum;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -34,6 +35,7 @@ public class FuncionarioDTO implements Serializable {
 
     @NotNull(message = "O campo EMAIL deve ser preenchido.")
     @NotBlank(message = "O campo EMAIL não pode estar em branco.")
+    @Email
     protected String email;
 
     protected String senha;
@@ -41,6 +43,10 @@ public class FuncionarioDTO implements Serializable {
     @NotNull(message = "O campo SETOR deve ser preenchido.")
     @NotBlank(message = "O campo SETOR não pode estar em branco.")
     protected String setor;
+
+    @NotNull(message = "O campo CARGO deve ser preenchido.")
+    @NotBlank(message = "O campo CARGO não pode estar em branco.")
+    protected String cargo;
 
     protected String telefone;
 
@@ -66,6 +72,7 @@ public class FuncionarioDTO implements Serializable {
         this.email = funcionario.getEmail();
         this.senha = funcionario.getSenha();
         this.setor = funcionario.getSetor();
+        this.cargo = funcionario.getCargo();
         this.telefone = funcionario.getTelefone();
         this.dataAniversario = funcionario.getDataAniversario();
         this.sexoEnum = funcionario.getSexoEnum();
