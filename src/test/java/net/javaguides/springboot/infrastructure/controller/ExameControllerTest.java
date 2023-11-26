@@ -1,48 +1,125 @@
 package net.javaguides.springboot.infrastructure.controller;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import net.javaguides.springboot.domain.dtos.request.ExameRequestDTO;
-import net.javaguides.springboot.domain.enums.StatusExameEnum;
-import net.javaguides.springboot.domain.enums.TipoExameEnum;
+import net.javaguides.springboot.domain.dtos.response.ExameResponseDTO;
+import net.javaguides.springboot.domain.entity.Exame;
+import net.javaguides.springboot.mocks.ExameDTOMock;
 import net.javaguides.springboot.usecase.ExameService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.web.servlet.MockMvc;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.Mockito.*;
 
-@AutoConfigureMockMvc
-@SpringBootTest
 public class ExameControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+    @InjectMocks
+    private ExameController exameController;
 
-    @Autowired
-    private ObjectMapper objectMapper;
+    @Mock
+    private ExameService exameService;
 
-    @Autowired ExameService exameService;
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.initMocks(this);
+    }
 
     @Test
-    public void testPostExame() throws Exception {
+    void testFindById() {
+        // Arrange
+        int exameId = 1;
+        Exame exame = new Exame();
+        when(exameService.findById(exameId)).thenReturn(exame);
 
-        ExameRequestDTO exameRequestDTO = new ExameRequestDTO();
-        exameRequestDTO.setDataExame(LocalDate.of(2020, 5, 30));
-        exameRequestDTO.setHoraExame(LocalTime.parse("10:01"));
-        exameRequestDTO.setIdPessoa(7);
-        exameRequestDTO.setLocalExame("escola - classe 10");
-        exameRequestDTO.setNomeExame("Exame CHECK-UP");
-        exameRequestDTO.setStatusExame(StatusExameEnum.PENDENTE);
-        exameRequestDTO.setTipoExame(TipoExameEnum.COMPLEMENTAR);
+        // Act
+        ResponseEntity<ExameResponseDTO> response = exameController.findById(exameId);
 
-        String jsonRequestBody = objectMapper.writeValueAsString(exameRequestDTO);
+        // Assert
+        verify(exameService, times(1)).findById(exameId);
+        assertNotNull(response);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
+    }
 
-        exameService.create(exameRequestDTO);
+    @Test
+    void testFindAll() {
+        // Arrange
+        List<Exame> exames = new ArrayList<>();
+        when(exameService.findAll()).thenReturn(exames);
 
+        // Act
+        ResponseEntity<List<ExameResponseDTO>> response = exameController.findAll();
+
+        // Assert
+        verify(exameService, times(1)).findAll();
+        assertNotNull(response);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
+    }
+
+    @Test
+    void testCreate() {
+        // Arrange
+        ExameRequestDTO exameDTO = ExameDTOMock.withRequestValues();
+        Exame newExame = new Exame();
+
+        when(exameService.create(exameDTO)).thenReturn(newExame);
+
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+
+        // Act
+        ResponseEntity<Exame> response = exameController.create(exameDTO);
+
+        // Assert
+        verify(exameService, times(1)).create(exameDTO);
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+
+        RequestContextHolder.resetRequestAttributes();
+    }
+
+    @Test
+    void testUpdate() {
+        // Arrange
+        int exameId = 1;
+        ExameResponseDTO exameResponseDTO = new ExameResponseDTO();
+        Exame exame = new Exame();
+        when(exameService.update(exameId, exameResponseDTO)).thenReturn(exame);
+
+        // Act
+        ResponseEntity<ExameResponseDTO> response = exameController.update(exameId, exameResponseDTO);
+
+        // Assert
+        verify(exameService, times(1)).update(exameId, exameResponseDTO);
+        assertNotNull(response);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
+    }
+
+    @Test
+    void testDelete() {
+        // Arrange
+        int exameId = 1;
+
+        // Act
+        ResponseEntity<ExameResponseDTO> response = exameController.delete(exameId);
+
+        // Assert
+        verify(exameService, times(1)).delete(exameId);
+        assertNotNull(response);
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
     }
 }

@@ -28,7 +28,7 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class TecnicoServiceTest {
+class TecnicoServiceTest {
 
     @InjectMocks
     private TecnicoService tecnicoService;
@@ -51,7 +51,7 @@ public class TecnicoServiceTest {
     }
 
     @Test
-    public void testFindById() {
+    void testFindById() {
         Tecnico tecnico = new Tecnico();
         tecnico.setId(1);
 
@@ -64,7 +64,7 @@ public class TecnicoServiceTest {
     }
 
     @Test
-    public void testFindAll() {
+    void testFindAll() {
         Tecnico tec1 = new Tecnico();
         Tecnico tec2 = new Tecnico();
         when(tecnicoRepository.findAll()).thenReturn(List.of(tec2, tec1));
@@ -76,7 +76,7 @@ public class TecnicoServiceTest {
     }
 
     @Test
-    public void testDeleteTecnico() {
+    void testDeleteTecnico() {
         Tecnico existingTecnico = new Tecnico();
         existingTecnico.setId(1);
 
@@ -86,7 +86,7 @@ public class TecnicoServiceTest {
     }
 
     @Test
-    public void testAdicionarPerfil() {
+    void testAdicionarPerfil() {
         Tecnico tecnico = new Tecnico();
         tecnico.setEmail("test@example.com");
         tecnico.addPerfil(PerfilEnum.ADMIN);
@@ -101,7 +101,7 @@ public class TecnicoServiceTest {
     }
 
     @Test
-    public void testFindByEmail() {
+    void testFindByEmail() {
         Tecnico tecnico = new Tecnico();
         tecnico.setEmail("test@example.com");
 
@@ -114,7 +114,7 @@ public class TecnicoServiceTest {
     }
 
     @Test
-    public void testAprovarLogin() {
+    void testAprovarLogin() {
         Tecnico tecnico = new Tecnico();
         tecnico.setId(1);
         tecnico.setIsApproved(false);
@@ -129,7 +129,7 @@ public class TecnicoServiceTest {
     }
 
     @Test
-    public void testAtualizarValoresTodosCamposPreenchidos() {
+    void testAtualizarValoresTodosCamposPreenchidos() {
         TecnicoDTO dto = new TecnicoDTO();
         dto.setPrimeiroNome("NovoPrimeiroNome");
         dto.setUltimoNome("NovoUltimoNome");
@@ -154,7 +154,7 @@ public class TecnicoServiceTest {
     }
 
     @Test
-    public void testAtualizarValoresNenhumCampoPreenchido() {
+    void testAtualizarValoresNenhumCampoPreenchido() {
         TecnicoDTO dto = new TecnicoDTO();
 
         Tecnico oldTecnico = new Tecnico();
@@ -180,7 +180,7 @@ public class TecnicoServiceTest {
     }
 
     @Test
-    public void testValidaCpfEmailEmailAlreadyExists() {
+    void testValidaCpfEmailEmailAlreadyExists() {
         TecnicoDTO dto = new TecnicoDTO();
         dto.setIdTecnico(1);
 
@@ -192,7 +192,7 @@ public class TecnicoServiceTest {
     }
 
     @Test
-    public void testValidaCpfEmailCpfAlreadyExists() {
+    void testValidaCpfEmailCpfAlreadyExists() {
         TecnicoDTO dto = new TecnicoDTO();
         dto.setIdTecnico(1);
 
@@ -204,7 +204,7 @@ public class TecnicoServiceTest {
     }
 
     @Test
-    public void testCreate() {
+    void testCreate() {
         TecnicoDTO dto = TecnicoDTOMock.withDefaultValues();
         when(encoder.encode(dto.getSenha())).thenReturn("hashedPassword");
         when(tecnicoRepository.save(any(Tecnico.class))).thenReturn(new Tecnico(dto));
@@ -215,7 +215,7 @@ public class TecnicoServiceTest {
     }
 
     @Test
-    public void testUpdate() {
+    void testUpdate() {
         Integer id = 1;
         TecnicoDTO dto = TecnicoDTOMock.withDefaultValues();
         when(tecnicoRepository.findById(id)).thenReturn(Optional.of(new Tecnico()));

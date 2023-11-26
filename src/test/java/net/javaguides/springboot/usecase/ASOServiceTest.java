@@ -25,7 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-public class ASOServiceTest {
+class ASOServiceTest {
     @InjectMocks
     private ASOService asoService;
 
