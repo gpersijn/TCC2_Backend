@@ -6,6 +6,7 @@ import net.javaguides.springboot.domain.entity.Exame;
 import net.javaguides.springboot.domain.entity.Funcionario;
 import net.javaguides.springboot.domain.entity.Pessoa;
 import net.javaguides.springboot.domain.enums.StatusExameEnum;
+import net.javaguides.springboot.domain.enums.TipoExameEnum;
 import net.javaguides.springboot.domain.repository.ExameRepository;
 import net.javaguides.springboot.domain.repository.PessoaRepository;
 import net.javaguides.springboot.usecase.exceptions.ObjectNotFoundException;
@@ -15,6 +16,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -116,7 +118,36 @@ class ExameServiceTest {
         // Assertion
         assertEquals(oldExame.getIdExame(), result.getIdExame());
         assertEquals(responseDTO.getHoraExame(), result.getHoraExame());
-        // Add more assertions as needed for other fields
+    }
+
+    @Test
+    void testUpdateWithAllFields() {
+        // Mocking
+        ExameResponseDTO responseDTO = new ExameResponseDTO();
+        responseDTO.setStatusExame(StatusExameEnum.EXPIRADO);
+        responseDTO.setHoraExame(LocalTime.parse("10:00"));
+        responseDTO.setDataExame(LocalDate.now());
+        responseDTO.setNomeExame("Exame de Sangue");
+        responseDTO.setLocalExame("Laboratório A");
+        responseDTO.setTipoExame(TipoExameEnum.COMPLEMENTAR);
+
+        Exame oldExame = new Exame();
+        oldExame.setIdExame(1);
+
+        when(exameRepository.findById(1)).thenReturn(Optional.of(oldExame));
+        when(exameRepository.save(any(Exame.class))).thenAnswer(invocation -> invocation.getArgument(0));
+
+        // Test
+        Exame result = exameService.update(1, responseDTO);
+
+        // Assertion
+        assertEquals(oldExame.getIdExame(), result.getIdExame());
+        assertEquals(responseDTO.getStatusExame(), result.getStatusExame());
+        assertEquals(responseDTO.getHoraExame(), result.getHoraExame());
+        assertEquals(responseDTO.getDataExame(), result.getDataExame());
+        assertEquals(responseDTO.getNomeExame(), result.getNomeExame());
+        assertEquals(responseDTO.getLocalExame(), result.getLocalExame());
+        assertEquals(responseDTO.getTipoExame(), result.getTipoExame());
     }
 
     @Test

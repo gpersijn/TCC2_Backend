@@ -2,12 +2,15 @@ package net.javaguides.springboot.usecase;
 
 import net.javaguides.springboot.domain.enums.StatusExameEnum;
 import net.javaguides.springboot.domain.enums.StatusVacinacaoEnum;
+import net.javaguides.springboot.domain.enums.TipoExameEnum;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -73,6 +76,56 @@ class RelatorioServiceTest {
         assertEquals("HR", ((Map<String, Object>) result[1]).get("setor"));
         assertEquals(20, ((Map<String, Object>) result[1]).get("quantidade"));
         assertEquals(40.0, ((Map<String, Object>) result[1]).get("porcentagem"));
+    }
+
+    @Test
+    void testGetDadosSetorComSemSetor() {
+        // Mocking
+        when(pessoaService.contarPessoasPorSetor()).thenReturn(List.of(new Object[]{"IT", 30L}, new Object[]{"HR", 20L}, new Object[]{"Finance", 0L}));
+
+        // Test
+        Object[] result = relatorioService.getDadosSetor();
+
+        // Assertion
+        assertEquals(3, result.length);
+        assertEquals("IT", ((Map<String, Object>) result[0]).get("setor"));
+        assertEquals(30, ((Map<String, Object>) result[0]).get("quantidade"));
+        assertEquals(60.0, ((Map<String, Object>) result[0]).get("porcentagem"));
+        assertEquals("HR", ((Map<String, Object>) result[1]).get("setor"));
+        assertEquals(20, ((Map<String, Object>) result[1]).get("quantidade"));
+        assertEquals(40.0, ((Map<String, Object>) result[1]).get("porcentagem"));
+        assertEquals("Finance", ((Map<String, Object>) result[2]).get("setor"));
+        assertEquals(0, ((Map<String, Object>) result[2]).get("quantidade"));
+        assertEquals(0.0, ((Map<String, Object>) result[2]).get("porcentagem"));
+    }
+
+    @Test
+    void testGetDadosExames() {
+        // Mocking
+        List<Object[]> mockedList = Arrays.asList(
+                new Object[]{TipoExameEnum.COMPLEMENTAR, 10L, LocalDate.now().getMonthValue()},
+                new Object[]{TipoExameEnum.COMPLEMENTAR, 20L, LocalDate.now().getMonthValue() - 3},
+                new Object[]{TipoExameEnum.COMPLEMENTAR, 15L, LocalDate.now().getMonthValue() - 7},
+                new Object[]{TipoExameEnum.COMPLEMENTAR, 5L, LocalDate.now().getMonthValue() - 2}
+        );
+
+        when(exameService.conteQuantidadePorTipoExame()).thenReturn(mockedList);
+
+        // Test
+        Object[] result = relatorioService.getDadosExames();
+
+        // Assertion
+        assertEquals(3, result.length);
+
+        Map<String, Object> dadosExame1 = (Map<String, Object>) result[0];
+        assertEquals(TipoExameEnum.COMPLEMENTAR.toString(), dadosExame1.get("tipoExame"));
+        assertEquals(10L, dadosExame1.get("quantidade"));
+        assertEquals(LocalDate.now().getMonthValue(), dadosExame1.get("mes"));
+
+        Map<String, Object> dadosExame2 = (Map<String, Object>) result[1];
+        assertEquals(TipoExameEnum.COMPLEMENTAR.toString(), dadosExame2.get("tipoExame"));
+        assertEquals(20L, dadosExame2.get("quantidade"));
+        assertEquals(LocalDate.now().getMonthValue() - 3, dadosExame2.get("mes"));
     }
 
     @Test
