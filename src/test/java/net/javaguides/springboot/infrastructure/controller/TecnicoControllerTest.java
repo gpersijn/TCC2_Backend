@@ -32,7 +32,7 @@ public class TecnicoControllerTest {
     }
 
     @Test
-    public void testFindById() {
+    void testFindById() {
         // Arrange
         int tecnicoId = 1;
         Tecnico tecnico = new Tecnico();
@@ -47,7 +47,7 @@ public class TecnicoControllerTest {
     }
 
     @Test
-    public void testFindAll() {
+    void testFindAll() {
         // Arrange
         List<Tecnico> tecnicos = new ArrayList<>();
         when(tecnicoService.findAll()).thenReturn(tecnicos);
@@ -61,7 +61,7 @@ public class TecnicoControllerTest {
     }
 
     @Test
-    public void testUpdate() {
+    void testUpdate() {
         // Arrange
         int tecnicoId = 1;
         TecnicoDTO tecnicoDTO = new TecnicoDTO();
@@ -77,7 +77,7 @@ public class TecnicoControllerTest {
     }
 
     @Test
-    public void testDelete() {
+    void testDelete() {
         // Arrange
         int tecnicoId = 1;
 
@@ -90,7 +90,7 @@ public class TecnicoControllerTest {
     }
 
     @Test
-    public void testAddPerfil() {
+    void testAddPerfil() {
         // Arrange
         PerfilDTO perfilDTO = new PerfilDTO();
         Tecnico tecnico = new Tecnico();
@@ -105,7 +105,7 @@ public class TecnicoControllerTest {
     }
 
     @Test
-    public void testListarTecnicosNaoAprovados() {
+    void testListarTecnicosNaoAprovados() {
         // Arrange
         List<Tecnico> tecnicosNaoAprovados = new ArrayList<>();
         when(tecnicoService.listTecnicosNaoAprovados()).thenReturn(tecnicosNaoAprovados);
@@ -119,7 +119,7 @@ public class TecnicoControllerTest {
     }
 
     @Test
-    public void testAprovar() {
+    void testAprovar() {
         // Arrange
         int tecnicoId = 1;
         Tecnico tecnico = new Tecnico();

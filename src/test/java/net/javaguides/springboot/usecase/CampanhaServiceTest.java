@@ -1,10 +1,5 @@
 package net.javaguides.springboot.usecase;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
-
-import java.util.Optional;
-
 import net.javaguides.springboot.domain.dtos.CampanhaDTO;
 import net.javaguides.springboot.domain.entity.Campanha;
 import net.javaguides.springboot.domain.repository.CampanhaRepository;
@@ -13,6 +8,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 class CampanhaServiceTest {

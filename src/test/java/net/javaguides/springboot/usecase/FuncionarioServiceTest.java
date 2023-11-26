@@ -25,7 +25,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class FuncionarioServiceTest {
+class FuncionarioServiceTest {
 
     @InjectMocks
     private FuncionarioService funcionarioService;
@@ -182,7 +182,7 @@ public class FuncionarioServiceTest {
     }
 
     @Test
-    public void testValidaCpfEmailCpfAlreadyExists() {
+    void testValidaCpfEmailCpfAlreadyExists() {
         FuncionarioDTO dto = new FuncionarioDTO();
         dto.setId(1);
 
@@ -194,7 +194,7 @@ public class FuncionarioServiceTest {
     }
 
     @Test
-    public void testCreate() {
+    void testCreate() {
         FuncionarioDTO dto = FuncionarioDTOMock.withDefaultValues();
         when(encoder.encode(dto.getSenha())).thenReturn("hashedPassword");
         when(funcionarioRepository.save(any(Funcionario.class))).thenReturn(new Funcionario(dto));
@@ -205,7 +205,7 @@ public class FuncionarioServiceTest {
     }
 
     @Test
-    public void testUpdate() {
+    void testUpdate() {
         Integer id = 1;
         FuncionarioDTO dto = FuncionarioDTOMock.withDefaultValues();
         when(funcionarioRepository.findById(id)).thenReturn(Optional.of(new Funcionario()));
