@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class PessoaServiceTest {
+class PessoaServiceTest {
     @InjectMocks
     private PessoaService pessoaService;
 

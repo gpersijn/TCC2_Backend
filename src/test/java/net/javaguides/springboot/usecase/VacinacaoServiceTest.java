@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @SpringBootTest
-public class VacinacaoServiceTest {
+class VacinacaoServiceTest {
 
     @InjectMocks
     private VacinacaoService vacinacaoService;
