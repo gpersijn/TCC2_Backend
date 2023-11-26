@@ -31,7 +31,7 @@ public class PessoaControllerTest {
     }
 
     @Test
-    public void testListarPessoasAprovadas() {
+    void testListarPessoasAprovadas() {
         // Arrange
         List<Pessoa> pessoasAprovadas = new ArrayList<>();
         when(pessoaService.listPessoasAprovadas()).thenReturn(pessoasAprovadas);

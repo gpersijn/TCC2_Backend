@@ -35,7 +35,7 @@ public class VacinacaoControllerTest {
     }
 
     @Test
-    public void testFindById() {
+    void testFindById() {
         // Arrange
         int vacinacaoId = 1;
         Vacinacao vacinacao = new Vacinacao();
@@ -50,7 +50,7 @@ public class VacinacaoControllerTest {
     }
 
     @Test
-    public void testFindAllVacinacoesPorPessoa() {
+    void testFindAllVacinacoesPorPessoa() {
         // Arrange
         int idPessoa = 1;
         List<VacinacaoResponseDTO> vacinacoes = new ArrayList<>();
@@ -66,7 +66,7 @@ public class VacinacaoControllerTest {
     }
 
     @Test
-    public void testFindAll() {
+    void testFindAll() {
         // Arrange
         List<Vacinacao> vacinacoes = new ArrayList<>();
         when(vacinacaoService.findAll()).thenReturn(vacinacoes);
@@ -80,7 +80,7 @@ public class VacinacaoControllerTest {
     }
 
     @Test
-    public void testCreate() {
+    void testCreate() {
         // Arrange
         VacinacaoRequestDTO vacinacaoDTO = VacinacaoDTOMock.withRequestValues();
         List<Vacinacao> vacinacoes = new ArrayList<>();
@@ -95,7 +95,7 @@ public class VacinacaoControllerTest {
     }
 
     @Test
-    public void testUpdate() {
+    void testUpdate() {
         // Arrange
         int vacinacaoId = 1;
         VacinacaoRequestAtualizacaoDTO vacinacaoDTO = new VacinacaoRequestAtualizacaoDTO();
@@ -111,7 +111,7 @@ public class VacinacaoControllerTest {
     }
 
     @Test
-    public void testDelete() {
+    void testDelete() {
         // Arrange
         int vacinacaoId = 1;
 

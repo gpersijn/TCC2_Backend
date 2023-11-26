@@ -32,7 +32,7 @@ public class FuncionarioControllerTest {
     }
 
     @Test
-    public void testFindById() {
+    void testFindById() {
         // Arrange
         int funcionarioId = 1;
         Funcionario funcionario = new Funcionario(); // Preencha com os dados do funcionário
@@ -47,7 +47,7 @@ public class FuncionarioControllerTest {
     }
 
     @Test
-    public void testFindAll() {
+    void testFindAll() {
         // Arrange
         List<Funcionario> funcionarios = new ArrayList<>(); // Preencha com os dados dos funcionários
         when(funcionarioService.findAll()).thenReturn(funcionarios);
@@ -61,7 +61,7 @@ public class FuncionarioControllerTest {
     }
 
     @Test
-    public void testUpdate() {
+    void testUpdate() {
         // Arrange
         int funcionarioId = 1;
         FuncionarioDTO funcionarioDTO = new FuncionarioDTO(); // Preencha com os dados do DTO
@@ -77,7 +77,7 @@ public class FuncionarioControllerTest {
     }
 
     @Test
-    public void testDelete() {
+    void testDelete() {
         // Arrange
         int funcionarioId = 1;
 
@@ -90,7 +90,7 @@ public class FuncionarioControllerTest {
     }
 
     @Test
-    public void testAddPerfil() {
+    void testAddPerfil() {
         // Arrange
         PerfilDTO perfilDTO = new PerfilDTO(); // Preencha com os dados do perfil
         Funcionario funcionario = new Funcionario(); // Preencha com os dados do funcionário
@@ -105,7 +105,7 @@ public class FuncionarioControllerTest {
     }
 
     @Test
-    public void testListarTecnicosNaoAprovados() {
+    void testListarTecnicosNaoAprovados() {
         // Arrange
         List<Funcionario> tecnicosNaoAprovados = new ArrayList<>(); // Preencha com os dados dos técnicos não aprovados
         when(funcionarioService.listFuncionariosNaoAprovados()).thenReturn(tecnicosNaoAprovados);
@@ -119,7 +119,7 @@ public class FuncionarioControllerTest {
     }
 
     @Test
-    public void testAprovar() {
+    void testAprovar() {
         // Arrange
         int funcionarioId = 1;
         Funcionario funcionario = new Funcionario(); // Preencha com os dados do funcionário aprovado

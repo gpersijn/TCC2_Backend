@@ -33,12 +33,12 @@ public class ExameControllerTest {
     private ExameService exameService;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         MockitoAnnotations.initMocks(this);
     }
 
     @Test
-    public void testFindById() {
+    void testFindById() {
         // Arrange
         int exameId = 1;
         Exame exame = new Exame();
@@ -55,7 +55,7 @@ public class ExameControllerTest {
     }
 
     @Test
-    public void testFindAll() {
+    void testFindAll() {
         // Arrange
         List<Exame> exames = new ArrayList<>();
         when(exameService.findAll()).thenReturn(exames);
@@ -71,7 +71,7 @@ public class ExameControllerTest {
     }
 
     @Test
-    public void testCreate() {
+    void testCreate() {
         // Arrange
         ExameRequestDTO exameDTO = ExameDTOMock.withRequestValues();
         Exame newExame = new Exame();
@@ -92,7 +92,7 @@ public class ExameControllerTest {
     }
 
     @Test
-    public void testUpdate() {
+    void testUpdate() {
         // Arrange
         int exameId = 1;
         ExameResponseDTO exameResponseDTO = new ExameResponseDTO();
@@ -110,7 +110,7 @@ public class ExameControllerTest {
     }
 
     @Test
-    public void testDelete() {
+    void testDelete() {
         // Arrange
         int exameId = 1;
 
@@ -122,6 +122,4 @@ public class ExameControllerTest {
         assertNotNull(response);
         assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
     }
-
-    // Adicione testes para outros métodos da ExameController
 }
