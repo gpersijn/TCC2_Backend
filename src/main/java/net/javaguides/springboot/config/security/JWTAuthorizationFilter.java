@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
@@ -33,8 +34,17 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
                 SecurityContextHolder.getContext().setAuthentication(token);
             }
             chain.doFilter(request, response);
+        } else if (request.getMethod().equals("POST") && shouldSkipAuthentication(request.getRequestURI())){
+            chain.doFilter(request, response);
+        } else {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.getWriter().write("Unauthorized");
         }
 
+    }
+
+    private boolean shouldSkipAuthentication(String requestURI) {
+        return Arrays.asList("/funcionarios", "/tecnicos").contains(requestURI);
     }
 
     private UsernamePasswordAuthenticationToken getAuthentication(String token) {
