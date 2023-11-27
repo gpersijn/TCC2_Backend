@@ -36,6 +36,9 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
             chain.doFilter(request, response);
         } else if (request.getMethod().equals("POST") && shouldSkipAuthentication(request.getRequestURI())){
             chain.doFilter(request, response);
+        } else {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.getWriter().write("Unauthorized");
         }
 
     }
